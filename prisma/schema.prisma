@@ -1,0 +1,124 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String?
+  image     String?
+  role      String   @default("patient")
+  locale    String   @default("en")
+  phone     String?
+  nationality String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  reports      MedicalReport[]
+  appointments Appointment[]
+  chatMessages ChatMessage[]
+}
+
+model MedicalReport {
+  id          String   @id @default(cuid())
+  userId      String
+  fileUrl     String
+  fileName    String
+  fileType    String
+  analysis    String?
+  specialty   String?
+  summary     String?
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Appointment {
+  id          String   @id @default(cuid())
+  userId      String
+  doctorName  String
+  facilityName String
+  specialty   String
+  date        DateTime
+  status      String   @default("pending")
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  userId    String
+  role      String
+  content   String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Facility {
+  id          String   @id @default(cuid())
+  name        String
+  nameAr      String?
+  description String?
+  descriptionAr String?
+  city        String   @default("Al-Ahsa")
+  address     String?
+  phone       String?
+  email       String?
+  website     String?
+  image       String?
+  rating      Float    @default(0)
+  specialties String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  doctors           Doctor[]
+  treatmentPackages TreatmentPackage[]
+}
+
+model Doctor {
+  id         String   @id @default(cuid())
+  facilityId String
+  name       String
+  nameAr     String?
+  specialty  String
+  image      String?
+  rating     Float    @default(0)
+  yearsExp   Int      @default(0)
+  languages  String[]
+  bio        String?
+  bioAr      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  facility Facility @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+}
+
+model TreatmentPackage {
+  id          String   @id @default(cuid())
+  facilityId  String
+  name        String
+  nameAr      String?
+  description String?
+  descriptionAr String?
+  specialty   String
+  price       Float
+  currency    String   @default("SAR")
+  duration    String?
+  includes    String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  facility Facility @relation(fields: [facilityId], references: [id], onDelete: Cascade)
+}
