@@ -1,0 +1,135 @@
+{
+  "common": {
+    "appName": "MedVisit Al-Ahsa",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "getStarted": "Get Started",
+    "register": "Register",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "next": "Next",
+    "search": "Search",
+    "filter": "Filter",
+    "noResults": "No results found",
+    "error": "Something went wrong",
+    "success": "Success"
+  },
+  "nav": {
+    "triage": "AI Triage",
+    "facilities": "Facilities",
+    "chat": "Assistant",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "badge": "Powered by AI · Al-Ahsa, Saudi Arabia",
+    "title": "Your Medical Journey",
+    "titleHighlight": "Starts Here",
+    "subtitle": "From first inquiry to full recovery — MedVisit transforms international patients' searches into complete, guided medical tourism experiences in Saudi Arabia.",
+    "cta": "Start AI Triage",
+    "secondary": "Browse Facilities"
+  },
+  "trust": {
+    "verified": "Verified Saudi Licensed Facilities",
+    "serving": "Serving Patients from 50+ Countries",
+    "aiPowered": "AI-Powered Matching in Seconds"
+  },
+  "features": {
+    "title": "Everything You Need in One Platform",
+    "subtitle": "Five integrated modules working together to turn your medical inquiry into a successful treatment journey.",
+    "triage": {
+      "title": "AI Smart Triage",
+      "description": "Upload your medical reports and get instant AI-powered analysis directing you to the right specialty and facility."
+    },
+    "pricing": {
+      "title": "Price Matching",
+      "description": "Compare treatment packages across facilities to find options that fit your budget and timeline."
+    },
+    "travel": {
+      "title": "Travel Coordinator",
+      "description": "End-to-end travel coordination — visa, flights, airport pickup, and hotel booking near your hospital."
+    },
+    "chat": {
+      "title": "Multilingual Assistant",
+      "description": "Chat with our AI assistant in Arabic, English, and more — available 24/7 throughout your medical journey."
+    },
+    "followup": {
+      "title": "Post-Treatment Care",
+      "description": "Stay connected with your doctor after returning home. Medication reminders, rehab schedules, and remote follow-ups."
+    }
+  },
+  "cta": {
+    "title": "Ready to Start Your Medical Journey?",
+    "subtitle": "Upload your medical reports and let our AI guide you to the best treatment options in Al-Ahsa and across Saudi Arabia.",
+    "button": "Get Started Now"
+  },
+  "triage": {
+    "title": "AI Medical Triage",
+    "subtitle": "Upload your medical reports and let our AI analyze them to recommend the best specialty and facility for your case.",
+    "upload": "Upload Medical Report",
+    "uploadHint": "Drag & drop or click to upload PDF, images, or documents",
+    "analyzing": "Analyzing your report...",
+    "results": "Analysis Results",
+    "findings": "Key Findings",
+    "recommendedSpecialty": "Recommended Specialty",
+    "urgency": "Urgency Level",
+    "suggestedActions": "Suggested Actions",
+    "findFacilities": "Find Matching Facilities",
+    "noReports": "No reports uploaded yet",
+    "uploadFirst": "Upload your first medical report to get AI-powered recommendations."
+  },
+  "facilities": {
+    "title": "Medical Facilities",
+    "subtitle": "Browse verified hospitals and clinics in Al-Ahsa with specialized departments for international patients.",
+    "searchPlaceholder": "Search facilities...",
+    "filterSpecialty": "Filter by Specialty",
+    "allSpecialties": "All Specialties",
+    "doctors": "Doctors",
+    "packages": "Treatment Packages",
+    "bookAppointment": "Book Appointment",
+    "priceFrom": "From",
+    "perPackage": "per package",
+    "rating": "Rating"
+  },
+  "chat": {
+    "title": "Medical Assistant",
+    "subtitle": "Chat with our AI assistant about your medical journey, facilities, or any questions you have.",
+    "placeholder": "Type your message...",
+    "send": "Send",
+    "thinking": "Thinking..."
+  },
+  "dashboard": {
+    "title": "Your Dashboard",
+    "welcome": "Welcome back",
+    "reports": "Medical Reports",
+    "appointments": "Upcoming Appointments",
+    "recentChat": "Recent Conversations",
+    "noAppointments": "No upcoming appointments",
+    "noReports": "No reports yet",
+    "noChats": "No conversations yet"
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Sign in to your MedVisit account",
+    "registerTitle": "Create your account",
+    "registerSubtitle": "Start your medical journey with MedVisit",
+    "email": "Email",
+    "password": "Password",
+    "name": "Full Name",
+    "phone": "Phone",
+    "nationality": "Nationality",
+    "preferredLanguage": "Preferred Language",
+    "signingIn": "Signing in...",
+    "creatingAccount": "Creating account...",
+    "orContinueWith": "or",
+    "continueWithGoogle": "Continue with Google",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?"
+  },
+  "footer": {
+    "services": "Services",
+    "contact": "Contact",
+    "rights": "All rights reserved."
+  }
+}
