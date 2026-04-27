@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Star, MapPin, Phone, Mail, Globe as GlobeIcon, User, Languages, Clock, DollarSign } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Doctor {
   id: string;
@@ -108,8 +109,14 @@ export function FacilityDetailDialog({ facility, open, onOpenChange }: FacilityD
             </TabsList>
 
             <TabsContent value="doctors" className="mt-4 space-y-3">
-              {facility.doctors.map((doctor) => (
-                <div key={doctor.id} className="rounded-lg border p-4">
+              {facility.doctors.map((doctor, i) => (
+                <motion.div
+                  key={doctor.id}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.06, duration: 0.3 }}
+                  className="rounded-lg border p-4"
+                >
                   <div className="flex items-start justify-between">
                     <div>
                       <h4 className="font-medium text-sm">
@@ -131,7 +138,7 @@ export function FacilityDetailDialog({ facility, open, onOpenChange }: FacilityD
                       {locale === "ar" && doctor.bioAr ? doctor.bioAr : doctor.bio}
                     </p>
                   )}
-                </div>
+                </motion.div>
               ))}
               {facility.doctors.length === 0 && (
                 <p className="text-sm text-muted-foreground text-center py-8">No doctors listed yet.</p>
@@ -139,8 +146,14 @@ export function FacilityDetailDialog({ facility, open, onOpenChange }: FacilityD
             </TabsContent>
 
             <TabsContent value="packages" className="mt-4 space-y-3">
-              {facility.treatmentPackages.map((pkg) => (
-                <div key={pkg.id} className="rounded-lg border p-4">
+              {facility.treatmentPackages.map((pkg, i) => (
+                <motion.div
+                  key={pkg.id}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.06, duration: 0.3 }}
+                  className="rounded-lg border p-4"
+                >
                   <div className="flex items-start justify-between">
                     <div>
                       <h4 className="font-medium text-sm">
@@ -168,7 +181,7 @@ export function FacilityDetailDialog({ facility, open, onOpenChange }: FacilityD
                       ))}
                     </div>
                   )}
-                </div>
+                </motion.div>
               ))}
               {facility.treatmentPackages.length === 0 && (
                 <p className="text-sm text-muted-foreground text-center py-8">No packages listed yet.</p>
