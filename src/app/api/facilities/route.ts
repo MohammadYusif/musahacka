@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { mockFacilities, mockSpecialties } from "@/lib/mock-data";
 
 export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const specialty = searchParams.get("specialty");
+  const search = searchParams.get("search");
+
+  let facilities = mockFacilities;
+  let specialties = mockSpecialties;
+
   try {
-    const { searchParams } = new URL(req.url);
-    const specialty = searchParams.get("specialty");
-    const search = searchParams.get("search");
+    const { prisma } = await import("@/lib/prisma");
 
     const where: Record<string, unknown> = {};
 
@@ -21,12 +26,9 @@ export async function GET(req: NextRequest) {
       ];
     }
 
-    const facilities = await prisma.facility.findMany({
+    const dbFacilities = await prisma.facility.findMany({
       where,
-      include: {
-        doctors: true,
-        treatmentPackages: true,
-      },
+      include: { doctors: true, treatmentPackages: true },
       orderBy: { rating: "desc" },
     });
 
@@ -34,11 +36,25 @@ export async function GET(req: NextRequest) {
       select: { specialties: true },
     });
 
-    const uniqueSpecialties = [...new Set(allSpecialties.flatMap((f) => f.specialties))].sort();
+    facilities = dbFacilities as unknown as typeof mockFacilities;
+    specialties = [...new Set(allSpecialties.flatMap((f) => f.specialties))].sort();
+  } catch {
+    console.warn("Database unavailable, using mock data");
 
-    return NextResponse.json({ facilities, specialties: uniqueSpecialties });
-  } catch (error) {
-    console.error("Facilities error:", error);
-    return NextResponse.json({ error: "Failed to fetch facilities" }, { status: 500 });
+    if (specialty && specialty !== "All Specialties") {
+      facilities = facilities.filter((f) => f.specialties.includes(specialty));
+    }
+
+    if (search) {
+      const q = search.toLowerCase();
+      facilities = facilities.filter(
+        (f) =>
+          f.name.toLowerCase().includes(q) ||
+          (f.nameAr && f.nameAr.includes(q)) ||
+          f.city.toLowerCase().includes(q)
+      );
+    }
   }
+
+  return NextResponse.json({ facilities, specialties });
 }

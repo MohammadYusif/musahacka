@@ -90,7 +90,8 @@
     "bookAppointment": "Book Appointment",
     "priceFrom": "From",
     "perPackage": "per package",
-    "rating": "Rating"
+    "rating": "Rating",
+    "noResults": "No facilities found matching your criteria"
   },
   "chat": {
     "title": "Medical Assistant",

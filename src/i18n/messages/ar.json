@@ -90,7 +90,8 @@
     "bookAppointment": "حجز موعد",
     "priceFrom": "ابتداءً من",
     "perPackage": "لكل باقة",
-    "rating": "التقييم"
+    "rating": "التقييم",
+    "noResults": "لم يتم العثور على منشآت تطابق معاييرك"
   },
   "chat": {
     "title": "المساعد الطبي",
