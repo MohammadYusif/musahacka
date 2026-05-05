@@ -10,17 +10,17 @@ export function Footer() {
   const locale = useLocale();
 
   return (
-    <footer className="border-t bg-muted/40">
-      <div className="container mx-auto px-4 py-8">
+    <footer className="border-t bg-muted/30">
+      <div className="container mx-auto px-4 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary">
-                <span className="text-primary-foreground font-bold text-xs">M</span>
+            <div className="flex items-center gap-2.5 mb-3">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary shadow-sm shadow-primary/20">
+                <span className="text-primary-foreground font-black text-xs">W</span>
               </div>
-              <span className="font-bold">{tc("appName")}</span>
+              <span className="font-bold text-base">{tc("appName")}</span>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               {locale === "ar"
                 ? "بوابتك الذكية للسياحة العلاجية في المملكة العربية السعودية."
                 : "Your AI-powered gateway to medical tourism in Saudi Arabia."}
@@ -42,7 +42,7 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="border-t mt-8 pt-4 text-center text-xs text-muted-foreground">
+        <div className="border-t mt-8 pt-5 text-center text-xs text-muted-foreground">
           &copy; {new Date().getFullYear()} {tc("appName")}. {t("rights")}
         </div>
       </div>
