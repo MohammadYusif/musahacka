@@ -4,13 +4,21 @@ const globalForOpenAI = globalThis as unknown as {
   openai: OpenAI | undefined;
 };
 
-export const openai =
-  globalForOpenAI.openai ??
-  new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
+function getClient(): OpenAI {
+  if (!globalForOpenAI.openai) {
+    globalForOpenAI.openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+  }
+  return globalForOpenAI.openai;
+}
 
-if (process.env.NODE_ENV !== "production") globalForOpenAI.openai = openai;
+// Lazy proxy — instantiated only when a method is first called (not at import time)
+export const openai = new Proxy({} as OpenAI, {
+  get(_, prop) {
+    return (getClient() as unknown as Record<string | symbol, unknown>)[prop];
+  },
+});
 
 export const TRIAGE_SYSTEM_PROMPT = `You are a medical triage assistant for a medical tourism platform in Al-Ahsa, Saudi Arabia. Analyze the uploaded medical report and provide a structured assessment.
 

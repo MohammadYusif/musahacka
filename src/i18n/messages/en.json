@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "MedVisit Al-Ahsa",
+    "appName": "Wisal",
     "signIn": "Sign In",
     "signOut": "Sign Out",
     "getStarted": "Get Started",
@@ -26,7 +26,7 @@
     "badge": "Powered by AI · Al-Ahsa, Saudi Arabia",
     "title": "Your Medical Journey",
     "titleHighlight": "Starts Here",
-    "subtitle": "From first inquiry to full recovery — MedVisit transforms international patients' searches into complete, guided medical tourism experiences in Saudi Arabia.",
+    "subtitle": "From first inquiry to full recovery — Wisal transforms international patients' searches into complete, guided medical tourism experiences in Saudi Arabia.",
     "cta": "Start AI Triage",
     "secondary": "Browse Facilities"
   },
@@ -112,21 +112,31 @@
   },
   "auth": {
     "loginTitle": "Welcome back",
-    "loginSubtitle": "Sign in to your MedVisit account",
+    "loginSubtitle": "Sign in to your Wisal account",
     "registerTitle": "Create your account",
-    "registerSubtitle": "Start your medical journey with MedVisit",
-    "email": "Email",
+    "registerSubtitle": "Start your medical journey with Wisal",
+    "backToHome": "Back to home",
+    "email": "Email address",
     "password": "Password",
     "name": "Full Name",
-    "phone": "Phone",
-    "nationality": "Nationality",
+    "phone": "Phone (optional)",
+    "nationality": "Nationality (optional)",
     "preferredLanguage": "Preferred Language",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
     "signingIn": "Signing in...",
     "creatingAccount": "Creating account...",
-    "orContinueWith": "or",
+    "orContinueWith": "or continue with",
     "continueWithGoogle": "Continue with Google",
     "noAccount": "Don't have an account?",
-    "hasAccount": "Already have an account?"
+    "hasAccount": "Already have an account?",
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "emailInvalid": "Please enter a valid email address",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 8 characters",
+      "serverError": "Invalid email or password"
+    }
   },
   "footer": {
     "services": "Services",
