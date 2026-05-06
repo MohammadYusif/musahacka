@@ -24,79 +24,71 @@ An AI-powered platform that transforms international patients' medical inquiries
 
 ## Getting Started
 
-### Option 1: Docker (recommended)
+### Prerequisites
 
-1. Clone the repo:
-```bash
-git clone <repo-url>
-cd musahacka
-```
+- **Docker Desktop** (must be running) — provides PostgreSQL
+- **Node.js 22+** and **npm**
+- **OpenAI API key** (for AI triage & chat features)
 
-2. Configure environment:
-```bash
-cp .env.example .env
-# Edit .env with your OpenAI API key at minimum
-```
+### Setup
 
-3. Start everything (database + app):
+1. **Clone and install**
+   ```bash
+   git clone <repo-url>
+   cd musahacka
+   npm install
+   ```
+
+2. **Configure environment**
+   ```bash
+   cp .env.example .env
+   ```
+   Edit `.env` and add your `OPENAI_API_KEY`. The default values work for everything else.
+
+3. **Start the database**
+   ```bash
+   docker compose up -d db
+   ```
+   This starts PostgreSQL on port 5432. Wait a few seconds for it to become healthy.
+
+4. **Migrate and seed**
+   ```bash
+   npm run db:setup
+   ```
+   This generates the Prisma client, applies migrations, and seeds the database with 4 facilities, doctors, treatment packages, and a demo user.
+
+5. **Run the app**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000).
+
+### Docker (full stack)
+
+To run both the app and database in containers:
 ```bash
 docker compose up --build
 ```
 
-The app will be available at [http://localhost:3000](http://localhost:3000).
+### Demo access
 
-The Docker setup automatically:
-- Starts a PostgreSQL 16 container
-- Runs database migrations on startup
-- Seeds the database with sample data
+After seeding, you can sign in with:
+- **Email:** `patient@example.com`
+- The seed creates a demo user — check `prisma/seed.ts` for the password hash config
 
-### Option 2: Local development
+## npm Scripts
 
-#### Prerequisites
-- Node.js 18+
-- PostgreSQL database (or Docker for just the DB)
-- OpenAI API key
-
-#### Setup
-
-1. Clone and install:
-```bash
-git clone <repo-url>
-cd musahacka
-npm install
-```
-
-2. Configure environment:
-```bash
-cp .env.example .env
-# Edit .env with your database URL, OpenAI key, etc.
-```
-
-3. Set up database:
-```bash
-docker compose up -d db     # Start PostgreSQL
-cp .env.example .env        # Configure environment
-npm run db:setup            # Migrate + seed
-```
-
-4. Run development server:
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to see the app.
-
-| `npm run` | Description |
+| Command | Description |
 |---|---|
-| `dev` | Start development server |
-| `build` | Build for production |
-| `start` | Start production server |
-| `lint` | Run ESLint |
-| `db:setup` | Generate Prisma client + migrate + seed (one command) |
-| `db:generate` | Generate Prisma client |
-| `db:migrate` | Run database migrations |
-| `db:seed` | Seed database with sample data |
-| `db:studio` | Open Prisma Studio |
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
+| `npm run db:setup` | Generate Prisma client + migrate + seed (all-in-one) |
+| `npm run db:generate` | Generate Prisma client only |
+| `npm run db:migrate` | Run pending database migrations |
+| `npm run db:seed` | Seed database with sample data |
+| `npm run db:studio` | Open Prisma Studio (GUI) |
 
 ## Project Structure
 
@@ -125,12 +117,12 @@ src/
 ├── components/
 │   ├── ui/                 # shadcn/ui base components
 │   ├── layout/             # Header, Footer
-│   ├── triage/             # File upload, analysis results
+│   ├── triage/             # File upload, AgentStepReveal, JourneyCard
 │   ├── facilities/         # Facility cards, detail dialog
 │   ├── chat/               # Chat interface
 │   └── providers/          # Auth, i18n providers
 ├── i18n/
-│   ├── messages/           # en.json, ar.json (242 keys each)
+│   ├── messages/           # en.json, ar.json
 │   ├── routing.ts          # Locale routing config
 │   ├── navigation.ts       # i18n Link, useRouter
 │   └── request.ts          # next-intl request config
@@ -141,13 +133,13 @@ src/
 │   ├── use-specialty.ts    # i18n hook for specialty names
 │   ├── use-package.ts      # i18n hooks for package items/durations
 │   └── utils.ts            # cn() utility
-└── generated/prisma/       # Prisma generated client
+└── generated/prisma/       # Prisma generated client (gitignored)
 ```
 
 ## Demo Flow
 
 1. **Landing** — Hero, philosophy, services, how it works, testimonials, FAQ
-2. **Triage** — Upload a sample medical report → watch AI analyze it
+2. **Triage** — Upload a medical report → AI Agent step reveal → analysis results
 3. **Facilities** — Filtered results matching the recommended specialty
 4. **Chat** — Ask the assistant about travel arrangements or facilities
 5. **Dashboard** — Overview of reports, appointments, and chat history
@@ -155,7 +147,7 @@ src/
 
 ## Localization
 
-All UI text is fully translated via `next-intl`. Every visible string uses a translation key (242 keys in both English and Arabic). Medical specialty names, package items, and duration labels also have translation maps with fallback to English.
+All UI text is fully translated via `next-intl`. Every visible string uses a translation key in both English (`en.json`) and Arabic (`ar.json`). Medical specialty names, package items, and duration labels also have translation maps with fallback to English. RTL layout is fully supported via `[dir="rtl"]` CSS rules and bidirectional component logic.
 
 ## License
 
