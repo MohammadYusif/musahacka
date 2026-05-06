@@ -46,7 +46,9 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-3 group">
-            <Image src="/brand/WisalLogo.svg" alt={tc("appName")} width={320} height={106} className="h-14 sm:h-16 md:h-[68px] w-auto" priority />
+            <div className="overflow-hidden h-14 sm:h-16 md:h-[68px]">
+              <Image src="/brand/WisalLogo.svg" alt={tc("appName")} width={320} height={106} className="h-full w-auto scale-[1.6] origin-center" priority />
+            </div>
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
