@@ -103,7 +103,7 @@ export function JourneyCard({
         </div>
         <div className="mt-6 md:mt-0">
           <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
-            <Image src="/brand/WisalW.svg" alt="Wisal" width={24} height={24} className="w-5 h-5 brightness-0 invert" />
+            <Image src="/brand/WisalW.svg" alt="Wisal" width={32} height={32} className="w-8 h-8 brightness-0 invert" />
           </div>
         </div>
       </div>

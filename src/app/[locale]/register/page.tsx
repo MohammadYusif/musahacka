@@ -87,7 +87,7 @@ export default function RegisterPage() {
             <CardHeader className="text-center pt-8 pb-2">
               <div className="flex justify-center mb-5">
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-500 shadow-lg shadow-brand-500/30">
-                  <Image src="/brand/WisalW.svg" alt="Wisal" width={28} height={28} className="w-7 h-7" />
+                  <Image src="/brand/WisalW.svg" alt="Wisal" width={40} height={40} className="w-10 h-10" />
                 </div>
               </div>
               <CardTitle className="text-2xl font-bold text-bark-800" style={{ fontFamily: "var(--font-display)" }}>{t("registerTitle")}</CardTitle>
