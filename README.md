@@ -43,7 +43,7 @@ cp .env.example .env
 docker compose up --build
 ```
 
-The app will be available at [http://localhost:3001](http://localhost:3001).
+The app will be available at [http://localhost:3000](http://localhost:3000).
 
 The Docker setup automatically:
 - Starts a PostgreSQL 16 container
