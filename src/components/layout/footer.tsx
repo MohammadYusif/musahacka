@@ -11,7 +11,7 @@ export function Footer() {
   const locale = useLocale();
 
   return (
-    <footer className="bg-bark-900 text-ivory-400 pt-20 pb-10 relative">
+    <footer className="bg-brand-800 text-ivory-400 pt-20 pb-10 relative">
       <div className="absolute top-0 left-0 right-0 h-px gold-line opacity-40"></div>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 mb-16">
@@ -59,7 +59,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="h-px bg-ivory-800 mb-8"></div>
+        <div className="h-px bg-gold-400/20 mb-8"></div>
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gold-400/60">&copy; {new Date().getFullYear()} {tc("appName")}. {t("rights")}</p>
