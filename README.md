@@ -86,20 +86,17 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to see the app.
 
-### npm Scripts
-
-| Script | Description |
+| `npm run` | Description |
 |---|---|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npm run postinstall` | Auto-generates Prisma client after `npm install` |
-| `npm run db:setup` | Run migrations + seed (one command) |
-| `npm run db:generate` | Generate Prisma client |
-| `npm run db:migrate` | Run database migrations |
-| `npm run db:seed` | Seed database with sample data |
-| `npm run db:studio` | Open Prisma Studio |
+| `dev` | Start development server |
+| `build` | Build for production |
+| `start` | Start production server |
+| `lint` | Run ESLint |
+| `db:setup` | Generate Prisma client + migrate + seed (one command) |
+| `db:generate` | Generate Prisma client |
+| `db:migrate` | Run database migrations |
+| `db:seed` | Seed database with sample data |
+| `db:studio` | Open Prisma Studio |
 
 ## Project Structure
 
