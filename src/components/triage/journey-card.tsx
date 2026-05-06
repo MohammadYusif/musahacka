@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Download, Calendar, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 interface CompanionPlan {
   companions: number;
@@ -102,7 +103,7 @@ export function JourneyCard({
         </div>
         <div className="mt-6 md:mt-0">
           <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
-            <span className="text-ivory-100 font-bold text-lg" style={{ fontFamily: "var(--font-display)" }}>W</span>
+            <Image src="/brand/WisalW.svg" alt="Wisal" width={24} height={24} className="w-5 h-5 brightness-0 invert" />
           </div>
         </div>
       </div>

@@ -12,7 +12,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FadeIn } from "@/components/ui/fade-in";
-import { ArrowLeft, User, Mail, Lock, Phone, Flag, Globe, Eye, EyeOff, AlertCircle, HeartPulse } from "lucide-react";
+import { ArrowLeft, User, Mail, Lock, Phone, Flag, Globe, Eye, EyeOff, AlertCircle } from "lucide-react";
+import Image from "next/image";
 
 type FieldErrors = Record<string, string>;
 
@@ -86,7 +87,7 @@ export default function RegisterPage() {
             <CardHeader className="text-center pt-8 pb-2">
               <div className="flex justify-center mb-5">
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-500 shadow-lg shadow-brand-500/30">
-                  <HeartPulse className="w-7 h-7 text-ivory-100" />
+                  <Image src="/brand/WisalW.svg" alt="Wisal" width={28} height={28} className="w-7 h-7" />
                 </div>
               </div>
               <CardTitle className="text-2xl font-bold text-bark-800" style={{ fontFamily: "var(--font-display)" }}>{t("registerTitle")}</CardTitle>
