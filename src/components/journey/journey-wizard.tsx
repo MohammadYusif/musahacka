@@ -193,7 +193,7 @@ export function JourneyWizard() {
 
           {step === 2 && journeyData && (
             <StepHotel
-              hotels={journeyData.hotels}
+              hotels={journeyData.hotels.filter(h => !selectedHospital || h.city === selectedHospital.city)}
               selectedHotel={selectedHotel}
               nights={nights}
               onSelect={(h: Hotel) => update({ selectedHotel: h })}
@@ -214,7 +214,7 @@ export function JourneyWizard() {
 
           {step === 4 && journeyData && (
             <StepEvents
-              events={journeyData.events}
+              events={journeyData.events.filter(e => !selectedHospital || e.city === selectedHospital.city)}
               selectedEvents={selectedEvents}
               onToggle={(e: LocalEvent) =>
                 update({

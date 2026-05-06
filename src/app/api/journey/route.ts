@@ -28,6 +28,8 @@ export async function POST(req: NextRequest) {
       });
     }
 
+    // Return all hotels and events — filtering by city happens on the client
+    // after the user selects their hospital
     return NextResponse.json({ hospitals, hotels, transports: transportOptions, events: localEvents });
   } catch (error) {
     console.error("Journey error:", error);

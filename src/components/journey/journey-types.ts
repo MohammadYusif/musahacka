@@ -39,6 +39,7 @@ export interface Hospital {
   description: string | null;
   address: string | null;
   phone: string | null;
+  city: string;
   rating: number;
   specialties: string[];
   doctors: Doctor[];
