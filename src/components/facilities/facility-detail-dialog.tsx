@@ -1,13 +1,15 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useSpecialty } from "@/lib/use-specialty";
+import { usePackageItem, useDuration } from "@/lib/use-package";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Star, MapPin, Phone, Mail, Globe as GlobeIcon, User, Languages, Clock, DollarSign } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface Doctor {
   id: string;
@@ -60,6 +62,11 @@ interface FacilityDetailProps {
 
 export function FacilityDetailDialog({ facility, open, onOpenChange }: FacilityDetailProps) {
   const locale = useLocale();
+  const t = useTranslations("facilities");
+  const ts = useSpecialty();
+  const tp = usePackageItem();
+  const td = useDuration();
+  const isRtl = locale === "ar";
 
   if (!facility) return null;
 
@@ -90,22 +97,22 @@ export function FacilityDetailDialog({ facility, open, onOpenChange }: FacilityD
 
           <div className="flex flex-wrap gap-1.5 mb-4">
             {facility.specialties.map((s) => (
-              <Badge key={s} variant="secondary">{s}</Badge>
+              <Badge key={s} variant="secondary">{ts(s)}</Badge>
             ))}
           </div>
 
           <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-            {facility.phone && <a href={`tel:${facility.phone}`} className="flex items-center gap-1 hover:text-foreground"><Phone className="h-3.5 w-3.5" />{facility.phone}</a>}
+            {facility.phone && <a href={`tel:${facility.phone}`} dir="ltr" className="flex items-center gap-1 hover:text-foreground"><Phone className="h-3.5 w-3.5" />{facility.phone}</a>}
             {facility.email && <a href={`mailto:${facility.email}`} className="flex items-center gap-1 hover:text-foreground"><Mail className="h-3.5 w-3.5" />{facility.email}</a>}
-            {facility.website && <a href={facility.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-foreground"><GlobeIcon className="h-3.5 w-3.5" />Website</a>}
+            {facility.website && <a href={facility.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-foreground"><GlobeIcon className="h-3.5 w-3.5" />{t("website")}</a>}
           </div>
 
           <Separator className="my-4" />
 
           <Tabs defaultValue="doctors">
             <TabsList className="w-full">
-              <TabsTrigger value="doctors" className="flex-1">Doctors ({facility.doctors.length})</TabsTrigger>
-              <TabsTrigger value="packages" className="flex-1">Packages ({facility.treatmentPackages.length})</TabsTrigger>
+              <TabsTrigger value="doctors" className="flex-1">{t("doctors")} ({facility.doctors.length})</TabsTrigger>
+              <TabsTrigger value="packages" className="flex-1">{t("packages")} ({facility.treatmentPackages.length})</TabsTrigger>
             </TabsList>
 
             <TabsContent value="doctors" className="mt-4 space-y-3">
@@ -122,7 +129,7 @@ export function FacilityDetailDialog({ facility, open, onOpenChange }: FacilityD
                       <h4 className="font-medium text-sm">
                         {locale === "ar" && doctor.nameAr ? doctor.nameAr : doctor.name}
                       </h4>
-                      <Badge variant="outline" className="mt-1 text-xs">{doctor.specialty}</Badge>
+                      <Badge variant="outline" className="mt-1 text-xs">{ts(doctor.specialty)}</Badge>
                     </div>
                     <div className="flex items-center gap-1">
                       <Star className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
@@ -130,8 +137,8 @@ export function FacilityDetailDialog({ facility, open, onOpenChange }: FacilityD
                     </div>
                   </div>
                   <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{doctor.yearsExp} yrs</span>
-                    <span className="flex items-center gap-1"><Languages className="h-3 w-3" />{doctor.languages.join(", ")}</span>
+                    <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{doctor.yearsExp} {t("years")}</span>
+                    <span className="flex items-center gap-1"><Languages className="h-3 w-3" />{doctor.languages.join(isRtl ? "، " : ", ")}</span>
                   </div>
                   {(locale === "ar" && doctor.bioAr ? doctor.bioAr : doctor.bio) && (
                     <p className="mt-2 text-xs text-muted-foreground">
@@ -141,7 +148,7 @@ export function FacilityDetailDialog({ facility, open, onOpenChange }: FacilityD
                 </motion.div>
               ))}
               {facility.doctors.length === 0 && (
-                <p className="text-sm text-muted-foreground text-center py-8">No doctors listed yet.</p>
+                <p className="text-sm text-muted-foreground text-center py-8">{t("noDoctors")}</p>
               )}
             </TabsContent>
 
@@ -159,14 +166,11 @@ export function FacilityDetailDialog({ facility, open, onOpenChange }: FacilityD
                       <h4 className="font-medium text-sm">
                         {locale === "ar" && pkg.nameAr ? pkg.nameAr : pkg.name}
                       </h4>
-                      <Badge variant="outline" className="mt-1 text-xs">{pkg.specialty}</Badge>
+                      <Badge variant="outline" className="mt-1 text-xs">{ts(pkg.specialty)}</Badge>
                     </div>
                     <div className="text-right">
-                      <p className="font-bold text-primary">
-                        <DollarSign className="inline h-3.5 w-3.5" />
-                        {pkg.price.toLocaleString()} {pkg.currency}
-                      </p>
-                      {pkg.duration && <p className="text-xs text-muted-foreground">{pkg.duration}</p>}
+                      <p className="font-bold text-primary">{pkg.price.toLocaleString()} {pkg.currency}</p>
+                      {pkg.duration && <p className="text-xs text-muted-foreground">{td(pkg.duration)}</p>}
                     </div>
                   </div>
                   {(locale === "ar" && pkg.descriptionAr ? pkg.descriptionAr : pkg.description) && (
@@ -177,14 +181,14 @@ export function FacilityDetailDialog({ facility, open, onOpenChange }: FacilityD
                   {pkg.includes.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 mt-2">
                       {pkg.includes.map((item) => (
-                        <Badge key={item} variant="secondary" className="text-xs">{item}</Badge>
+                        <Badge key={item} variant="secondary" className="text-xs">{tp(item)}</Badge>
                       ))}
                     </div>
                   )}
                 </motion.div>
               ))}
               {facility.treatmentPackages.length === 0 && (
-                <p className="text-sm text-muted-foreground text-center py-8">No packages listed yet.</p>
+                <p className="text-sm text-muted-foreground text-center py-8">{t("noPackages")}</p>
               )}
             </TabsContent>
           </Tabs>

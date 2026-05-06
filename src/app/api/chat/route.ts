@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import { openai } from "@/lib/openai";
 
-const CHAT_SYSTEM_PROMPT = `You are MedVisit Assistant, a helpful AI medical tourism assistant for Al-Ahsa, Saudi Arabia. You help international patients with:
+const CHAT_SYSTEM_PROMPT = `You are Wisal Assistant, a helpful AI medical tourism assistant for Al-Ahsa, Saudi Arabia. You help international patients with:
 
 1. Finding the right medical facilities and specialists
 2. Understanding treatment options and pricing

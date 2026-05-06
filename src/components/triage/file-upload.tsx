@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { useTranslations } from "next-intl";
 import { Upload, FileText, X, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -12,6 +13,7 @@ interface FileUploadProps {
 }
 
 export function FileUpload({ onFileSelect, isAnalyzing }: FileUploadProps) {
+  const t = useTranslations("triage");
   const [dragActive, setDragActive] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
@@ -87,12 +89,10 @@ export function FileUpload({ onFileSelect, isAnalyzing }: FileUploadProps) {
                 >
                   <Upload className="mx-auto h-10 w-10 text-muted-foreground mb-3" />
                 </motion.div>
-                <p className="text-sm text-muted-foreground">
-                  Drag & drop or click to upload PDF, images, or documents
-                </p>
+                <p className="text-sm text-muted-foreground">{t("uploadHint")}</p>
                 <label className="mt-3 inline-block cursor-pointer">
                   <span className="text-primary text-sm font-medium hover:underline">
-                    Browse files
+                    {t("browseFiles")}
                   </span>
                   <input
                     type="file"
@@ -111,19 +111,16 @@ export function FileUpload({ onFileSelect, isAnalyzing }: FileUploadProps) {
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.25 }}
+          className="flex justify-end"
         >
-          <Button onClick={handleSubmit} className="w-full" disabled={isAnalyzing} size="lg">
+          <Button onClick={handleSubmit} disabled={isAnalyzing} className="gap-2">
             {isAnalyzing ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Analyzing your report...
+                <Loader2 className="h-4 w-4 animate-spin" />
+                {t("analyzing")}
               </>
             ) : (
-              <>
-                <FileText className="mr-2 h-4 w-4" />
-                Analyze Report
-              </>
+              t("analyze")
             )}
           </Button>
         </motion.div>

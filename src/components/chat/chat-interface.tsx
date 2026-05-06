@@ -21,7 +21,7 @@ export function ChatInterface() {
     {
       id: 0,
       role: "assistant",
-      content: "Hello! I'm your MedVisit assistant for medical tourism in Al-Ahsa. How can I help you today? You can ask about facilities, specialties, treatment packages, or travel arrangements.",
+      content: t("welcome"),
     },
   ]);
   const [input, setInput] = useState("");
@@ -104,7 +104,7 @@ export function ChatInterface() {
       const errId = msgIdRef.current++;
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "I'm sorry, I encountered an error. Please try again.", id: errId },
+        { role: "assistant", content: t("error"), id: errId },
       ]);
     } finally {
       setIsStreaming(false);
@@ -113,10 +113,10 @@ export function ChatInterface() {
   };
 
   const suggestions = [
-    "I need a cardiologist in Al-Ahsa",
-    "What are the best hospitals for orthopedics?",
-    "How much does a cardiac check-up cost?",
-    "Help me plan my medical trip to Saudi Arabia",
+    t("suggestions.0"),
+    t("suggestions.1"),
+    t("suggestions.2"),
+    t("suggestions.3"),
   ];
 
   return (

@@ -1,6 +1,7 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { useSpecialty } from "@/lib/use-specialty";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -29,13 +30,14 @@ interface FacilityCardProps {
 
 export function FacilityCard({ facility, onViewDetails }: FacilityCardProps) {
   const locale = useLocale();
+  const t = useTranslations("facilities");
+  const ts = useSpecialty();
+  const isRtl = locale === "ar";
   const displayName = locale === "ar" && facility.nameAr ? facility.nameAr : facility.name;
   const displayDesc = locale === "ar" && facility.descriptionAr ? facility.descriptionAr : facility.description;
 
   return (
-    <motion.div
-      whileHover={{ y: -3, transition: { type: "spring", stiffness: 300, damping: 25 } }}
-    >
+    <motion.div whileHover={{ y: -3, transition: { type: "spring", stiffness: 300, damping: 25 } }}>
       <Card className="hover:shadow-lg transition-shadow h-full">
         <CardHeader>
           <div className="flex items-start justify-between gap-2">
@@ -55,12 +57,10 @@ export function FacilityCard({ facility, onViewDetails }: FacilityCardProps) {
           </div>
         </CardHeader>
         <CardContent className="space-y-3">
-          {displayDesc && (
-            <p className="text-sm text-muted-foreground line-clamp-2">{displayDesc}</p>
-          )}
+          {displayDesc && <p className="text-sm text-muted-foreground line-clamp-2">{displayDesc}</p>}
           <div className="flex flex-wrap gap-1.5">
             {facility.specialties.slice(0, 4).map((s) => (
-              <Badge key={s} variant="secondary" className="text-xs">{s}</Badge>
+              <Badge key={s} variant="secondary" className="text-xs">{ts(s)}</Badge>
             ))}
             {facility.specialties.length > 4 && (
               <Badge variant="outline" className="text-xs">+{facility.specialties.length - 4}</Badge>
@@ -69,24 +69,24 @@ export function FacilityCard({ facility, onViewDetails }: FacilityCardProps) {
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
             <div className="flex items-center gap-1">
               <Users className="h-3.5 w-3.5" />
-              <span>{facility.doctors.length} Doctors</span>
+              <span>{facility.doctors.length} {t("doctors")}</span>
             </div>
             <div className="flex items-center gap-1">
               <Package className="h-3.5 w-3.5" />
-              <span>{facility.treatmentPackages.length} Packages</span>
+              <span>{facility.treatmentPackages.length} {t("packages")}</span>
             </div>
           </div>
         </CardContent>
         <CardFooter className="flex items-center justify-between gap-2">
           {facility.phone && (
-            <a href={`tel:${facility.phone}`} className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors">
+            <a href={`tel:${facility.phone}`} dir="ltr" className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors">
               <Phone className="h-3 w-3" />
               {facility.phone}
             </a>
           )}
-          <Button size="sm" variant="outline" className="ml-auto gap-1" onClick={() => onViewDetails(facility.id)}>
+          <Button size="sm" variant="outline" className={`gap-1 ${isRtl ? "mr-auto" : "ml-auto"}`} onClick={() => onViewDetails(facility.id)}>
             <ExternalLink className="h-3 w-3" />
-            Details
+            {t("details")}
           </Button>
         </CardFooter>
       </Card>

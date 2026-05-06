@@ -1,4 +1,88 @@
 {
+  "stats": {
+    "title": "Trusted by Thousands",
+    "subtitle": "We've helped patients from around the world access world-class medical care in Saudi Arabia.",
+    "patients": "Patients Served",
+    "facilities": "Partner Facilities",
+    "treatments": "Successful Treatments",
+    "satisfaction": "Satisfaction Rate"
+  },
+  "howItWorks": {
+    "sectionSubtitle": "Simple Process",
+    "title": "How It Works",
+    "subtitle": "Getting your medical treatment in Saudi Arabia is simple. Follow these steps.",
+    "step1": {
+      "title": "Upload Your Reports",
+      "description": "Upload your medical reports, test results, or diagnostic images. Our AI analyzes them instantly."
+    },
+    "step2": {
+      "title": "Get AI Recommendations",
+      "description": "Receive personalized recommendations for the best specialty and facilities matching your case."
+    },
+    "step3": {
+      "title": "Compare & Choose",
+      "description": "Browse facilities, compare treatment packages, prices, and doctor credentials."
+    },
+    "step4": {
+      "title": "Book Your Treatment",
+      "description": "Schedule your appointment and let us handle travel logistics from visa to recovery."
+    }
+  },
+  "testimonials": {
+    "sectionLabel": "Testimonials",
+    "title": "What Patients Say",
+    "subtitle": "Real stories from patients who transformed their health journey with Wisal.",
+    "items": [
+      {
+        "name": "Ahmed Hassan",
+        "location": "Egypt",
+        "text": "The AI triage was incredible. Within hours of uploading my reports, I had a clear treatment plan and the best facility recommendations. The entire process was transparent and professional.",
+        "treatment": "Cardiac Surgery"
+      },
+      {
+        "name": "Sarah Chen",
+        "location": "Malaysia",
+        "text": "Wisal made everything so easy. From the initial consultation to post-treatment follow-up, I felt supported every step. The facility was world-class and the cost was a fraction of what I'd pay back home.",
+        "treatment": "Orthopedic Surgery"
+      },
+      {
+        "name": "Mohammed Ali",
+        "location": "United Arab Emirates",
+        "text": "As someone with complex medical needs, I was nervous about seeking treatment abroad. Wisal's AI matching found exactly what I needed. The travel coordination was flawless.",
+        "treatment": "Neurological Treatment"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Got questions? We've got answers.",
+    "items": [
+      {
+        "question": "How does the AI triage work?",
+        "answer": "Our AI-powered system analyzes your uploaded medical reports and documents. It identifies your condition, suggests the appropriate medical specialty, and recommends the best facilities in Saudi Arabia based on your specific case."
+      },
+      {
+        "question": "Is my medical information secure?",
+        "answer": "Absolutely. We use enterprise-grade encryption and comply with international healthcare data protection standards. Your medical information is never shared without your explicit consent."
+      },
+      {
+        "question": "How much does treatment cost in Saudi Arabia?",
+        "answer": "Treatment costs in Saudi Arabia are significantly lower than in Western countries—often 50-70% less for the same quality of care. We help you compare packages across facilities to find options that fit your budget."
+      },
+      {
+        "question": "Do you help with travel arrangements?",
+        "answer": "Yes! We offer comprehensive travel coordination including visa processing, flight bookings, airport pickup, and hotel accommodation near your chosen facility. We make your medical journey stress-free."
+      },
+      {
+        "question": "Can I communicate in my language?",
+        "answer": "Our AI assistant supports multiple languages including Arabic, English, and more. We also provide translation services during consultations and can arrange multilingual coordinators at your facility."
+      },
+      {
+        "question": "What happens after I return home?",
+        "answer": "We provide post-treatment follow-up care coordination, including medication reminders, rehabilitation schedules, and remote consultations with your Saudi doctors to ensure continuous recovery support."
+      }
+    ]
+  },
   "common": {
     "appName": "Wisal",
     "signIn": "Sign In",
@@ -14,7 +98,16 @@
     "filter": "Filter",
     "noResults": "No results found",
     "error": "Something went wrong",
-    "success": "Success"
+    "success": "Success",
+    "emailPlaceholder": "your@email.com",
+    "passwordPlaceholder": "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022",
+    "phonePlaceholder": "+966 50 xxx xxxx",
+    "nationalityPlaceholder": "e.g. UAE",
+    "english": "English",
+    "arabic": "\u0627\u0644\u0639\u0631\u0628\u064a\u0629",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "close": "Close"
   },
   "nav": {
     "triage": "AI Triage",
@@ -60,9 +153,16 @@
     }
   },
   "cta": {
+    "sectionLabel": "Get Started",
     "title": "Ready to Start Your Medical Journey?",
     "subtitle": "Upload your medical reports and let our AI guide you to the best treatment options in Al-Ahsa and across Saudi Arabia.",
-    "button": "Get Started Now"
+    "button": "Get Started Now",
+    "trust": [
+      { "text": "Verified Facilities" },
+      { "text": "50+ Countries" },
+      { "text": "AI-Powered" },
+      { "text": "Full Support" }
+    ]
   },
   "triage": {
     "title": "AI Medical Triage",
@@ -71,13 +171,25 @@
     "uploadHint": "Drag & drop or click to upload PDF, images, or documents",
     "analyzing": "Analyzing your report...",
     "results": "Analysis Results",
+    "error": "Something went wrong",
+    "previousReports": "Previous Reports",
     "findings": "Key Findings",
     "recommendedSpecialty": "Recommended Specialty",
     "urgency": "Urgency Level",
     "suggestedActions": "Suggested Actions",
     "findFacilities": "Find Matching Facilities",
     "noReports": "No reports uploaded yet",
-    "uploadFirst": "Upload your first medical report to get AI-powered recommendations."
+    "analyze": "Analyze",
+    "uploadFirst": "Upload your first medical report to get AI-powered recommendations.",
+    "browseFiles": "Browse files",
+    "summary": "Summary",
+    "recommendedTests": "Recommended Tests",
+    "urgencyLabels": {
+      "low": "Low",
+      "moderate": "Moderate",
+      "high": "High",
+      "emergency": "Emergency"
+    }
   },
   "facilities": {
     "title": "Medical Facilities",
@@ -91,14 +203,27 @@
     "priceFrom": "From",
     "perPackage": "per package",
     "rating": "Rating",
-    "noResults": "No facilities found matching your criteria"
+    "noResults": "No facilities found matching your criteria",
+    "details": "Details",
+    "website": "Website",
+    "noDoctors": "No doctors listed yet.",
+    "noPackages": "No packages listed yet.",
+    "years": "yrs"
   },
   "chat": {
     "title": "Medical Assistant",
     "subtitle": "Chat with our AI assistant about your medical journey, facilities, or any questions you have.",
     "placeholder": "Type your message...",
     "send": "Send",
-    "thinking": "Thinking..."
+    "thinking": "Thinking...",
+    "welcome": "Hello! I\u2019m your Wisal assistant for medical tourism in Al-Ahsa. How can I help you today? You can ask about facilities, specialties, treatment packages, or travel arrangements.",
+    "error": "I\u2019m sorry, I encountered an error. Please try again.",
+    "suggestions": [
+      "I need a cardiologist in Al-Ahsa",
+      "What are the best hospitals for orthopedics?",
+      "How much does a cardiac check-up cost?",
+      "Help me plan my medical trip to Saudi Arabia"
+    ]
   },
   "dashboard": {
     "title": "Your Dashboard",
@@ -108,7 +233,10 @@
     "recentChat": "Recent Conversations",
     "noAppointments": "No upcoming appointments",
     "noReports": "No reports yet",
-    "noChats": "No conversations yet"
+    "noChats": "No conversations yet",
+    "newReport": "New",
+    "openChat": "Open",
+    "continue": "Continue"
   },
   "auth": {
     "loginTitle": "Welcome back",
@@ -141,6 +269,150 @@
   "footer": {
     "services": "Services",
     "contact": "Contact",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "tagline": "Your AI-powered gateway to medical tourism in Saudi Arabia. Connecting patients with world-class care.",
+    "company": "Company",
+    "aboutUs": "About Us",
+    "ourStory": "Our Story",
+    "faq": "FAQ",
+    "contactUs": "Contact Us",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "location": "Al-Ahsa, Saudi Arabia"
+  },
+  "about": {
+    "subtitle": "Our Philosophy",
+    "heading": "Your Health,",
+    "highlight": "Our Mission",
+    "p1": "At Wisal, we believe world-class healthcare should know no borders. We bridge the gap between international patients and Saudi Arabia\u2019s finest medical facilities.",
+    "p2": "From AI-powered triage to comprehensive travel coordination, our platform guides you through every step of your medical journey \u2014 from first inquiry to full recovery.",
+    "badge": "Partner Facilities",
+    "items": [
+      { "title": "Verified", "desc": "Licensed facilities" },
+      { "title": "50+ Countries", "desc": "Global patient reach" },
+      { "title": "AI-Powered", "desc": "Smart matching in seconds" },
+      { "title": "End-to-End", "desc": "Full journey support" }
+    ]
+  },
+  "services": {
+    "subtitle": "Our Services",
+    "heading": "Everything You",
+    "highlight": "Need",
+    "desc": "Five integrated modules working together to turn your medical inquiry into a successful treatment journey."
+  },
+  "newsletter": {
+    "title": "Stay",
+    "highlight": "Informed",
+    "desc": "Receive healthcare insights, updates on Saudi medical tourism, and exclusive offers.",
+    "placeholder": "Your email address",
+    "button": "Subscribe",
+    "toast": "Welcome! We'll keep you updated on the latest in medical tourism."
+  },
+  "specialties": {
+    "Cardiology": "Cardiology",
+    "Orthopedics": "Orthopedics",
+    "Neurology": "Neurology",
+    "General Surgery": "General Surgery",
+    "Oncology": "Oncology",
+    "Urology": "Urology",
+    "Nephrology": "Nephrology",
+    "Pediatrics": "Pediatrics",
+    "Obstetrics": "Obstetrics",
+    "Cardiac Surgery": "Cardiac Surgery",
+    "Ophthalmology": "Ophthalmology",
+    "Internal Medicine": "Internal Medicine",
+    "Endocrinology": "Endocrinology",
+    "Gastroenterology": "Gastroenterology",
+    "Dermatology": "Dermatology",
+    "ENT": "ENT",
+    "General": "General",
+    "Psychiatry": "Psychiatry",
+    "Pulmonology": "Pulmonology",
+    "Rheumatology": "Rheumatology",
+    "Hematology": "Hematology",
+    "Infectious Disease": "Infectious Disease",
+    "Emergency Medicine": "Emergency Medicine",
+    "Anesthesiology": "Anesthesiology",
+    "Radiology": "Radiology",
+    "Pathology": "Pathology"
+  },
+  "pages": {
+    "about": {
+      "title": "About Us",
+      "p1": "Wisal is your trusted platform for medical tourism in Al-Ahsa, Saudi Arabia. We connect international patients with world-class healthcare facilities, making the journey from consultation to recovery seamless and stress-free.",
+      "p2": "Our AI-powered platform analyzes medical reports, recommends the right specialists and facilities, and coordinates every aspect of your medical trip — from visa arrangements to post-treatment follow-up.",
+      "p3": "We are committed to transparency, quality, and compassionate care. Every facility in our network is verified and licensed, ensuring you receive the highest standard of treatment."
+    },
+    "story": {
+      "title": "Our Story",
+      "p1": "Wisal was born from a simple vision: to make world-class healthcare accessible to everyone, regardless of borders. We saw a gap between patients seeking quality treatment abroad and the excellent medical facilities in Saudi Arabia waiting to serve them.",
+      "p2": "Built by a team of healthcare and technology professionals, our platform leverages artificial intelligence to bridge this gap. What started as an idea to simplify medical referrals has grown into a comprehensive medical tourism ecosystem.",
+      "p3": "Today, Wisal serves patients from over 50 countries, partnering with leading hospitals in Al-Ahsa to deliver personalized, end-to-end medical journeys."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "desc": "Have questions or need assistance? We\u2019re here to help. Reach out to our team and we\u2019ll get back to you as soon as possible.",
+      "email": "Email",
+      "emailValue": "hello@wisal.com",
+      "phone": "Phone",
+      "phoneValue": "+966 50 000 0000",
+      "location": "Location",
+      "locationValue": "Al-Ahsa, Eastern Province, Saudi Arabia"
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "p1": "At Wisal, we take your privacy seriously. This policy outlines how we collect, use, and protect your personal information when you use our platform.",
+      "p2": "We collect information you provide directly, such as your name, email address, phone number, and medical reports. This data is used solely to facilitate your medical tourism journey and improve our services.",
+      "p3": "Your medical information is encrypted and stored securely. We never share your data with third parties without your explicit consent. We comply with international healthcare data protection standards.",
+      "p4": "You have the right to access, correct, or delete your personal data at any time. Contact us if you have any questions about our privacy practices."
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "p1": "By using Wisal\u2019s platform, you agree to these terms. Our platform connects patients with medical facilities; we facilitate introductions and coordination but do not provide medical services directly.",
+      "p2": "All medical decisions should be made in consultation with licensed healthcare professionals. Wisal is not responsible for the quality of medical treatment provided by partner facilities.",
+      "p3": "You agree to provide accurate information when using our services. Misrepresentation may result in termination of access. We reserve the right to update these terms at any time.",
+      "p4": "For questions about these terms, please contact us. Use of this platform constitutes acceptance of these terms."
+    }
+  },
+  "packageItems": {
+    "ECG": "ECG",
+    "Echocardiogram": "Echocardiogram",
+    "Blood Panel": "Blood Panel",
+    "Doctor Consultation": "Doctor Consultation",
+    "Report": "Report",
+    "Pre-op Assessment": "Pre-op Assessment",
+    "Surgery": "Surgery",
+    "5-Day Hospital Stay": "5-Day Hospital Stay",
+    "Physiotherapy": "Physiotherapy",
+    "Medications": "Medications",
+    "Follow-up": "Follow-up",
+    "CT Scan": "CT Scan",
+    "Tumor Markers": "Tumor Markers",
+    "Blood Tests": "Blood Tests",
+    "Oncologist Review": "Oncologist Review",
+    "Detailed Report": "Detailed Report",
+    "LASIK Surgery": "LASIK Surgery",
+    "Post-op Check": "Post-op Check",
+    "Eye Drops": "Eye Drops",
+    "3-Month Follow-up": "3-Month Follow-up",
+    "Airport Transfer": "Airport Transfer",
+    "3-Star Hotel (3 Nights)": "3-Star Hotel (3 Nights)",
+    "Local SIM": "Local SIM",
+    "Translator": "Translator",
+    "Appointment Coordination": "Appointment Coordination",
+    "Full Blood Panel": "Full Blood Panel",
+    "Chest X-Ray": "Chest X-Ray",
+    "Ultrasound": "Ultrasound",
+    "Stress Test": "Stress Test",
+    "Nutrition Plan": "Nutrition Plan"
+  },
+  "durations": {
+    "1 Day": "1 Day",
+    "2 Days": "2 Days",
+    "7-10 Days": "7-10 Days",
+    "Per Trip": "Per Trip"
   }
 }

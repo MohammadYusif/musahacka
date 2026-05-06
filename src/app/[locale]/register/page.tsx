@@ -11,8 +11,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { AnimatedPage } from "@/components/ui/animated-page";
-import { ArrowLeft, User, Mail, Lock, Phone, Flag, Globe, Eye, EyeOff, AlertCircle } from "lucide-react";
+import { FadeIn } from "@/components/ui/fade-in";
+import { ArrowLeft, User, Mail, Lock, Phone, Flag, Globe, Eye, EyeOff, AlertCircle, HeartPulse } from "lucide-react";
 
 type FieldErrors = Record<string, string>;
 
@@ -22,29 +22,21 @@ export default function RegisterPage() {
   const t = useTranslations("auth");
   const tc = useTranslations("common");
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-    phone: "",
-    nationality: "",
-    locale,
-  });
+  const [form, setForm] = useState({ name: "", email: "", password: "", phone: "", nationality: "", locale });
   const [showPassword, setShowPassword] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [serverError, setServerError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const schema = useMemo(
-    () =>
-      z.object({
-        name: z.string().min(2, t("validation.nameMin")),
-        email: z.string().min(1, t("validation.emailInvalid")).email(t("validation.emailInvalid")),
-        password: z.string().min(8, t("validation.passwordMin")),
-        phone: z.string().optional(),
-        nationality: z.string().optional(),
-        locale: z.enum(["en", "ar"]),
-      }),
+    () => z.object({
+      name: z.string().min(2, t("validation.nameMin")),
+      email: z.string().min(1, t("validation.emailInvalid")).email(t("validation.emailInvalid")),
+      password: z.string().min(8, t("validation.passwordMin")),
+      phone: z.string().optional(),
+      nationality: z.string().optional(),
+      locale: z.enum(["en", "ar"]),
+    }),
     [t]
   );
 
@@ -60,247 +52,157 @@ export default function RegisterPage() {
     const result = schema.safeParse(form);
     if (!result.success) {
       const errs: FieldErrors = {};
-      result.error.issues.forEach((issue) => {
-        const key = issue.path[0] as string;
-        if (!errs[key]) errs[key] = issue.message;
-      });
+      result.error.issues.forEach((issue) => { const key = issue.path[0] as string; if (!errs[key]) errs[key] = issue.message; });
       setFieldErrors(errs);
       return;
     }
 
     setLoading(true);
     try {
-      const res = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+      const res = await fetch("/api/auth/register", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
       const data = await res.json();
-
-      if (!res.ok) {
-        setServerError(data.error || tc("error"));
-        setLoading(false);
-        return;
-      }
-
+      if (!res.ok) { setServerError(data.error || tc("error")); setLoading(false); return; }
       await signIn("credentials", { email: form.email, password: form.password, redirect: false });
       router.push("/dashboard");
-    } catch {
-      setServerError(tc("error"));
-      setLoading(false);
-    }
+    } catch { setServerError(tc("error")); setLoading(false); }
   };
 
   return (
-    <AnimatedPage>
-      <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gradient-to-br from-primary/5 via-background to-primary/3 px-4 py-10">
-        <div className="w-full max-w-md">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 mb-6 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <ArrowLeft className="h-3.5 w-3.5 rtl-flip" />
-            {t("backToHome")}
-          </Link>
+    <div className="min-h-[calc(100vh-5rem)] flex items-center justify-center px-4 py-10 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-100/30 via-ivory-100 to-brand-200/20"></div>
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-brand-300/10 rounded-full blur-[100px]"></div>
+      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gold-400/10 rounded-full blur-[100px]"></div>
 
-          <Card className="border-0 shadow-xl shadow-primary/8">
-            {/* Top accent line */}
-            <div className="h-1 bg-gradient-to-r from-primary/60 via-primary to-primary/60 rounded-t-[calc(var(--radius)+1px)]" />
+      <div className="w-full max-w-md relative z-10">
+        <Link href="/" className="inline-flex items-center gap-1.5 mb-6 text-sm text-bark-700 hover:text-gold-500 transition-colors">
+          <ArrowLeft className="h-3.5 w-3.5 rtl:rotate-180" />
+          {t("backToHome")}
+        </Link>
+
+        <FadeIn>
+          <Card className="border-0 shadow-xl shadow-bark-900/5 bg-white/90 backdrop-blur rounded-2xl overflow-hidden">
+            <div className="h-1 bg-gradient-to-r from-brand-400 via-brand-600 to-brand-400" />
 
             <CardHeader className="text-center pt-8 pb-2">
               <div className="flex justify-center mb-5">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary shadow-lg shadow-primary/30">
-                  <span className="text-primary-foreground font-black text-xl tracking-tight">W</span>
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-500 shadow-lg shadow-brand-500/30">
+                  <HeartPulse className="w-7 h-7 text-ivory-100" />
                 </div>
               </div>
-              <CardTitle className="text-2xl font-bold">{t("registerTitle")}</CardTitle>
-              <CardDescription className="text-sm mt-1">{t("registerSubtitle")}</CardDescription>
+              <CardTitle className="text-2xl font-bold text-bark-800" style={{ fontFamily: "var(--font-display)" }}>{t("registerTitle")}</CardTitle>
+              <CardDescription className="text-sm mt-1 text-bark-600">{t("registerSubtitle")}</CardDescription>
             </CardHeader>
 
             <CardContent className="pt-6">
               <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-                {/* Full Name */}
                 <div className="space-y-1.5">
-                  <Label htmlFor="name" className="text-sm font-medium">{t("name")}</Label>
+                  <Label htmlFor="name" className="text-sm font-medium text-bark-700">{t("name")}</Label>
                   <div className="relative">
-                    <User className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-                    <Input
-                      id="name"
-                      placeholder={locale === "ar" ? "أحمد حسن" : "Ahmed Hassan"}
-                      autoComplete="name"
-                      className={`pl-9 rtl:pl-3 rtl:pr-9 h-10 ${fieldErrors.name ? "border-destructive focus-visible:ring-destructive/30" : ""}`}
-                      value={form.name}
-                      onChange={(e) => updateField("name", e.target.value)}
-                    />
+                    <User className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-bark-400 pointer-events-none" />
+                    <Input id="name" placeholder={locale === "ar" ? "أحمد حسن" : "Ahmed Hassan"} autoComplete="name"
+                      className={`pl-9 rtl:pl-3 rtl:pr-9 h-10 rounded-xl border-ivory-300 focus:border-brand-400 ${fieldErrors.name ? "border-destructive" : ""}`}
+                      value={form.name} onChange={(e) => updateField("name", e.target.value)} />
                   </div>
-                  {fieldErrors.name && (
-                    <p className="flex items-center gap-1 text-xs text-destructive">
-                      <AlertCircle className="h-3 w-3 shrink-0" />
-                      {fieldErrors.name}
-                    </p>
-                  )}
+                  {fieldErrors.name && <p className="flex items-center gap-1 text-xs text-destructive"><AlertCircle className="h-3 w-3" />{fieldErrors.name}</p>}
                 </div>
 
-                {/* Email */}
                 <div className="space-y-1.5">
-                  <Label htmlFor="email" className="text-sm font-medium">{t("email")}</Label>
+                  <Label htmlFor="email" className="text-sm font-medium text-bark-700">{t("email")}</Label>
                   <div className="relative">
-                    <Mail className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="you@example.com"
-                      autoComplete="email"
-                      className={`pl-9 rtl:pl-3 rtl:pr-9 h-10 ${fieldErrors.email ? "border-destructive focus-visible:ring-destructive/30" : ""}`}
-                      value={form.email}
-                      onChange={(e) => updateField("email", e.target.value)}
-                    />
+                    <Mail className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-bark-400 pointer-events-none" />
+                      <Input id="email" type="email" placeholder={tc("emailPlaceholder")} autoComplete="email"
+                      className={`pl-9 rtl:pl-3 rtl:pr-9 h-10 rounded-xl border-ivory-300 focus:border-brand-400 ${fieldErrors.email ? "border-destructive" : ""}`}
+                      value={form.email} onChange={(e) => updateField("email", e.target.value)} />
                   </div>
-                  {fieldErrors.email && (
-                    <p className="flex items-center gap-1 text-xs text-destructive">
-                      <AlertCircle className="h-3 w-3 shrink-0" />
-                      {fieldErrors.email}
-                    </p>
-                  )}
+                  {fieldErrors.email && <p className="flex items-center gap-1 text-xs text-destructive"><AlertCircle className="h-3 w-3" />{fieldErrors.email}</p>}
                 </div>
 
-                {/* Password */}
                 <div className="space-y-1.5">
-                  <Label htmlFor="password" className="text-sm font-medium">{t("password")}</Label>
+                  <Label htmlFor="password" className="text-sm font-medium text-bark-700">{t("password")}</Label>
                   <div className="relative">
-                    <Lock className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-                    <Input
-                      id="password"
-                      type={showPassword ? "text" : "password"}
-                      placeholder="••••••••"
-                      autoComplete="new-password"
-                      className={`px-9 h-10 ${fieldErrors.password ? "border-destructive focus-visible:ring-destructive/30" : ""}`}
-                      value={form.password}
-                      onChange={(e) => updateField("password", e.target.value)}
-                    />
-                    <button
-                      type="button"
-                      aria-label={showPassword ? t("hidePassword") : t("showPassword")}
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute end-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                    >
+                    <Lock className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-bark-400 pointer-events-none" />
+                      <Input id="password" type={showPassword ? "text" : "password"} placeholder={tc("passwordPlaceholder")} autoComplete="new-password"
+                      className={`px-9 h-10 rounded-xl border-ivory-300 focus:border-brand-400 ${fieldErrors.password ? "border-destructive" : ""}`}
+                      value={form.password} onChange={(e) => updateField("password", e.target.value)} />
+                    <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute end-3 top-1/2 -translate-y-1/2 text-bark-400 hover:text-bark-700 transition-colors">
                       {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                     </button>
                   </div>
-                  {fieldErrors.password && (
-                    <p className="flex items-center gap-1 text-xs text-destructive">
-                      <AlertCircle className="h-3 w-3 shrink-0" />
-                      {fieldErrors.password}
-                    </p>
-                  )}
+                  {fieldErrors.password && <p className="flex items-center gap-1 text-xs text-destructive"><AlertCircle className="h-3 w-3" />{fieldErrors.password}</p>}
                 </div>
 
-                {/* Phone + Nationality */}
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-1.5">
-                    <Label htmlFor="phone" className="text-sm font-medium">{t("phone")}</Label>
+                    <Label htmlFor="phone" className="text-sm font-medium text-bark-700">{t("phone")}</Label>
                     <div className="relative">
-                      <Phone className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-                      <Input
-                        id="phone"
-                        placeholder="+966 50 xxx xxxx"
-                        autoComplete="tel"
-                        className="pl-9 rtl:pl-3 rtl:pr-9 h-10"
-                        value={form.phone}
-                        onChange={(e) => updateField("phone", e.target.value)}
-                      />
+                      <Phone className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-bark-400 pointer-events-none" />
+                      <Input id="phone" placeholder={tc("phonePlaceholder")} autoComplete="tel"
+                        className="pl-9 rtl:pl-3 rtl:pr-9 h-10 rounded-xl border-ivory-300 focus:border-brand-400"
+                        value={form.phone} onChange={(e) => updateField("phone", e.target.value)} />
                     </div>
                   </div>
                   <div className="space-y-1.5">
-                    <Label htmlFor="nationality" className="text-sm font-medium">{t("nationality")}</Label>
+                    <Label htmlFor="nationality" className="text-sm font-medium text-bark-700">{t("nationality")}</Label>
                     <div className="relative">
-                      <Flag className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
-                      <Input
-                        id="nationality"
-                        placeholder={locale === "ar" ? "الإمارات..." : "UAE..."}
-                        className="pl-9 rtl:pl-3 rtl:pr-9 h-10"
-                        value={form.nationality}
-                        onChange={(e) => updateField("nationality", e.target.value)}
-                      />
+                      <Flag className="absolute start-3 top-1/2 -translate-y-1/2 h-4 w-4 text-bark-400 pointer-events-none" />
+                      <Input id="nationality" placeholder={locale === "ar" ? "مثال: الإمارات" : tc("nationalityPlaceholder")}
+                        className="pl-9 rtl:pl-3 rtl:pr-9 h-10 rounded-xl border-ivory-300 focus:border-brand-400"
+                        value={form.nationality} onChange={(e) => updateField("nationality", e.target.value)} />
                     </div>
                   </div>
                 </div>
 
-                {/* Language */}
                 <div className="space-y-1.5">
-                  <Label className="text-sm font-medium flex items-center gap-1.5">
-                    <Globe className="h-3.5 w-3.5 text-muted-foreground" />
-                    {t("preferredLanguage")}
-                  </Label>
+                  <Label className="text-sm font-medium text-bark-700 flex items-center gap-1.5"><Globe className="h-3.5 w-3.5 text-bark-400" />{t("preferredLanguage")}</Label>
                   <Select value={form.locale} onValueChange={(v) => updateField("locale", v)}>
-                    <SelectTrigger className="h-10">
+                    <SelectTrigger className="h-10 rounded-xl border-ivory-300">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="en">English</SelectItem>
-                      <SelectItem value="ar">العربية</SelectItem>
+                      <SelectItem value="en">{tc("english")}</SelectItem>
+                      <SelectItem value="ar">{tc("arabic")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
-                {/* Server error */}
                 {serverError && (
-                  <div className="flex items-center gap-2 rounded-lg border border-destructive/30 bg-destructive/8 px-3 py-2.5 text-sm text-destructive">
-                    <AlertCircle className="h-4 w-4 shrink-0" />
-                    {serverError}
+                  <div className="flex items-center gap-2 rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2.5 text-sm text-destructive">
+                    <AlertCircle className="h-4 w-4 shrink-0" />{serverError}
                   </div>
                 )}
 
-                <Button type="submit" className="w-full h-11 font-semibold shadow-sm shadow-primary/20 mt-2" disabled={loading}>
+                <Button type="submit" className="w-full h-11 rounded-xl font-semibold bg-brand-600 hover:bg-brand-700 text-ivory-100 border-0 shadow-md shadow-brand-600/20 mt-2" disabled={loading}>
                   {loading ? (
                     <span className="flex items-center gap-2">
-                      <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
-                      </svg>
+                      <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" /></svg>
                       {t("creatingAccount")}
                     </span>
                   ) : tc("getStarted")}
                 </Button>
               </form>
 
-              {/* Divider */}
               <div className="relative my-6">
-                <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t" />
-                </div>
-                <div className="relative flex justify-center">
-                  <span className="bg-card px-3 text-xs text-muted-foreground">{t("orContinueWith")}</span>
-                </div>
+                <div className="absolute inset-0 flex items-center"><span className="w-full border-t border-ivory-300" /></div>
+                <div className="relative flex justify-center"><span className="bg-card px-3 text-xs text-bark-500">{t("orContinueWith")}</span></div>
               </div>
 
-              {/* Google */}
-              <Button
-                variant="outline"
-                className="w-full h-11"
-                onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
-              >
+              <Button variant="outline" className="w-full h-11 rounded-xl border-ivory-300 text-bark-700 hover:bg-ivory-100" onClick={() => signIn("google", { callbackUrl: "/dashboard" })}>
                 <svg className="me-2 h-4 w-4 shrink-0" viewBox="0 0 24 24">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                 </svg>
                 {t("continueWithGoogle")}
               </Button>
             </CardContent>
 
             <CardFooter className="justify-center pb-8">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-bark-500">
                 {t("hasAccount")}{" "}
-                <Link href="/login" className="text-primary font-semibold hover:underline underline-offset-4">
-                  {tc("signIn")}
-                </Link>
+                <Link href="/login" className="text-brand-600 font-semibold hover:underline underline-offset-4">{tc("signIn")}</Link>
               </p>
             </CardFooter>
           </Card>
-        </div>
+        </FadeIn>
       </div>
-    </AnimatedPage>
+    </div>
   );
 }

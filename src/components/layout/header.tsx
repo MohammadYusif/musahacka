@@ -38,134 +38,125 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-200 ${
-        scrolled ? "shadow-md shadow-primary/5" : ""
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? "bg-ivory-50/95 backdrop-blur-xl shadow-sm border-b border-ivory-200" : ""
       }`}
     >
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary shadow-sm shadow-primary/30">
-            <span className="text-primary-foreground font-black text-sm tracking-tight">W</span>
-          </div>
-          <span className="font-bold text-lg tracking-tight">{tc("appName")}</span>
-        </Link>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center group-hover:bg-brand-600 transition-colors">
+              <span className="text-ivory-100 font-bold text-base" style={{ fontFamily: "var(--font-display)" }}>W</span>
+            </div>
+            <div>
+              <span className="font-semibold tracking-wide text-bark-800" style={{ fontFamily: "var(--font-display)" }}>{tc("appName")}</span>
+              <span className="text-xs block tracking-[0.25em] text-gold-500 -mt-0.5" style={{ fontFamily: "var(--font-display)" }}>AL-AHSA</span>
+            </div>
+          </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60 rounded-md transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* Right actions */}
-        <div className="flex items-center gap-2">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={switchLocale}
-            className="gap-1.5 text-xs text-muted-foreground hover:text-foreground"
-          >
-            <Globe className="h-3.5 w-3.5" />
-            {locale === "en" ? "العربية" : "English"}
-          </Button>
-
-          {session?.user ? (
-            <div className="hidden md:flex items-center gap-2">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-muted/60 text-sm font-medium">
-                <User className="h-3.5 w-3.5 text-muted-foreground" />
-                <span className="max-w-[120px] truncate">{session.user.name ?? session.user.email}</span>
-              </div>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => signOut({ callbackUrl: "/" })}
-                className="gap-1.5 text-muted-foreground hover:text-destructive"
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-bark-700 hover:text-gold-500 transition-colors tracking-wide"
               >
-                <LogOut className="h-3.5 w-3.5" />
-                {tc("signOut")}
-              </Button>
-            </div>
-          ) : (
-            <div className="hidden md:flex items-center gap-2">
-              <Link href="/login">
-                <Button variant="ghost" size="sm" className="font-medium">
-                  {tc("signIn")}
-                </Button>
+                {link.label}
               </Link>
-              <Link href="/register">
-                <Button size="sm" className="font-medium shadow-sm shadow-primary/20">
-                  {tc("getStarted")}
-                </Button>
-              </Link>
-            </div>
-          )}
+            ))}
+          </nav>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+          <div className="flex items-center gap-3">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={switchLocale}
+              className="gap-1.5 text-xs text-bark-700 hover:text-gold-500"
+            >
+              <Globe className="h-3.5 w-3.5" />
+              {locale === "en" ? tc("arabic") : tc("english")}
+            </Button>
+
+            {session?.user ? (
+              <div className="hidden md:flex items-center gap-2">
+                <div className="text-sm text-bark-700 font-medium max-w-[120px] truncate">
+                  {session.user.name ?? session.user.email}
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                  className="text-bark-600 hover:text-bark-800 gap-1.5"
+                >
+                  <LogOut className="h-3.5 w-3.5" />
+                  {tc("signOut")}
+                </Button>
+              </div>
+            ) : (
+              <div className="hidden md:flex items-center gap-2">
+                <Link href="/login">
+                  <Button variant="ghost" size="sm" className="font-medium text-bark-700 hover:text-gold-500">
+                    {tc("signIn")}
+                  </Button>
+                </Link>
+                <Link href="/register">
+                  <Button size="sm" className="rounded-full bg-brand-600 text-ivory-100 font-medium hover:bg-brand-700 transition-all active:scale-[0.97] border-0">
+                    {tc("getStarted")}
+                  </Button>
+                </Link>
+              </div>
+            )}
+
+            <button
+              className="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-ivory-300 transition-colors"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={mobileOpen ? tc("closeMenu") : tc("openMenu")}
+            >
+              {mobileOpen ? <X className="w-5 h-5 text-bark-800" /> : <Menu className="w-5 h-5 text-bark-800" />}
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
-            className="md:hidden border-t bg-background overflow-hidden"
+            transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+            className="md:hidden bg-ivory-50/95 backdrop-blur-xl border-t border-ivory-200 overflow-hidden"
           >
-            <div className="p-4 space-y-1">
+            <div className="px-6 py-6 space-y-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="flex items-center px-3 py-2.5 text-sm font-medium rounded-md hover:bg-muted/60 transition-colors"
+                  className="block text-base font-medium text-bark-700 py-2 hover:text-gold-500 transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
                 </Link>
               ))}
-
-              <div className="pt-3 border-t mt-3">
+              <div className="pt-4 border-t border-ivory-300 flex gap-3">
                 {session?.user ? (
-                  <div className="space-y-2">
-                    <div className="px-3 py-2 text-sm font-medium text-muted-foreground">
-                      {session.user.name ?? session.user.email}
-                    </div>
-                    <Button
-                      variant="outline"
-                      className="w-full gap-2"
-                      size="sm"
-                      onClick={() => { setMobileOpen(false); signOut({ callbackUrl: "/" }); }}
-                    >
-                      <LogOut className="h-3.5 w-3.5" />
-                      {tc("signOut")}
-                    </Button>
-                  </div>
+                  <Button
+                    variant="outline"
+                    className="w-full"
+                    size="sm"
+                    onClick={() => { setMobileOpen(false); signOut({ callbackUrl: "/" }); }}
+                  >
+                    {tc("signOut")}
+                  </Button>
                 ) : (
-                  <div className="flex gap-2">
+                  <>
                     <Link href="/login" className="flex-1" onClick={() => setMobileOpen(false)}>
-                      <Button variant="outline" className="w-full" size="sm">{tc("signIn")}</Button>
+                      <Button variant="outline" className="w-full rounded-full" size="sm">{tc("signIn")}</Button>
                     </Link>
                     <Link href="/register" className="flex-1" onClick={() => setMobileOpen(false)}>
-                      <Button className="w-full" size="sm">{tc("getStarted")}</Button>
+                      <Button className="w-full rounded-full bg-brand-600 text-ivory-100 border-0" size="sm">{tc("getStarted")}</Button>
                     </Link>
-                  </div>
+                  </>
                 )}
               </div>
             </div>
