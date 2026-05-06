@@ -25,8 +25,8 @@ export function Footer() {
                 <span className="text-xs block tracking-[0.25em] text-gold-400 -mt-0.5" style={{ fontFamily: "var(--font-display)" }}>AL-AHSA</span>
               </div>
             </div>
-            <p className="text-sm text-ivory-500 leading-relaxed mb-6">{t("tagline")}</p>
-            <div className="flex items-center gap-3 text-ivory-600 text-sm">
+            <p className="text-sm text-gold-400/80 leading-relaxed mb-6">{t("tagline")}</p>
+            <div className="flex items-center gap-3 text-gold-400/60 text-sm">
               <span>{t("location")}</span>
             </div>
           </div>
@@ -34,26 +34,26 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-ivory-100 tracking-wide uppercase mb-5" style={{ fontFamily: "var(--font-display)" }}>{t("services")}</h4>
             <ul className="space-y-3">
-              <li><Link href="/triage" className="text-sm text-ivory-500 hover:text-gold-400 transition-colors">{tn("triage")}</Link></li>
-              <li><Link href="/facilities" className="text-sm text-ivory-500 hover:text-gold-400 transition-colors">{tn("facilities")}</Link></li>
-              <li><Link href="/chat" className="text-sm text-ivory-500 hover:text-gold-400 transition-colors">{tn("chat")}</Link></li>
-              <li><Link href="/dashboard" className="text-sm text-ivory-500 hover:text-gold-400 transition-colors">{tn("dashboard")}</Link></li>
+              <li><Link href="/triage" className="text-sm text-gold-400 hover:text-gold-300 transition-colors">{tn("triage")}</Link></li>
+              <li><Link href="/facilities" className="text-sm text-gold-400 hover:text-gold-300 transition-colors">{tn("facilities")}</Link></li>
+              <li><Link href="/chat" className="text-sm text-gold-400 hover:text-gold-300 transition-colors">{tn("chat")}</Link></li>
+              <li><Link href="/dashboard" className="text-sm text-gold-400 hover:text-gold-300 transition-colors">{tn("dashboard")}</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-sm font-semibold text-ivory-100 tracking-wide uppercase mb-5" style={{ fontFamily: "var(--font-display)" }}>{t("company")}</h4>
             <ul className="space-y-3">
-              <li><Link href="/about" className="text-sm text-ivory-500 hover:text-gold-400 transition-colors">{t("aboutUs")}</Link></li>
-              <li><Link href="/story" className="text-sm text-ivory-500 hover:text-gold-400 transition-colors">{t("ourStory")}</Link></li>
-              <li><Link href="/faq" className="text-sm text-ivory-500 hover:text-gold-400 transition-colors">{t("faq")}</Link></li>
-              <li><Link href="/contact" className="text-sm text-ivory-500 hover:text-gold-400 transition-colors">{t("contactUs")}</Link></li>
+              <li><Link href="/about" className="text-sm text-gold-400 hover:text-gold-300 transition-colors">{t("aboutUs")}</Link></li>
+              <li><Link href="/story" className="text-sm text-gold-400 hover:text-gold-300 transition-colors">{t("ourStory")}</Link></li>
+              <li><Link href="/faq" className="text-sm text-gold-400 hover:text-gold-300 transition-colors">{t("faq")}</Link></li>
+              <li><Link href="/contact" className="text-sm text-gold-400 hover:text-gold-300 transition-colors">{t("contactUs")}</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-sm font-semibold text-ivory-100 tracking-wide uppercase mb-5" style={{ fontFamily: "var(--font-display)" }}>{t("contact")}</h4>
-            <ul className="space-y-3 text-sm text-ivory-500">
+            <ul className="space-y-3 text-sm text-gold-400/80">
               <li>{t("location")}</li>
             </ul>
           </div>
@@ -62,10 +62,10 @@ export function Footer() {
         <div className="h-px bg-ivory-800 mb-8"></div>
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-ivory-600">&copy; {new Date().getFullYear()} {tc("appName")}. {t("rights")}</p>
+          <p className="text-xs text-gold-400/60">&copy; {new Date().getFullYear()} {tc("appName")}. {t("rights")}</p>
           <div className="flex items-center gap-6">
-            <Link href="/privacy" className="text-xs text-ivory-600 hover:text-gold-400 transition-colors">{t("privacy")}</Link>
-            <Link href="/terms" className="text-xs text-ivory-600 hover:text-gold-400 transition-colors">{t("terms")}</Link>
+            <Link href="/privacy" className="text-xs text-gold-400/70 hover:text-gold-300 transition-colors">{t("privacy")}</Link>
+            <Link href="/terms" className="text-xs text-gold-400/70 hover:text-gold-300 transition-colors">{t("terms")}</Link>
           </div>
         </div>
       </div>
