@@ -74,9 +74,9 @@ cp .env.example .env
 
 3. Set up database:
 ```bash
-npm run db:generate
-npm run db:migrate
-npm run db:seed
+docker compose up -d db     # Start PostgreSQL
+cp .env.example .env        # Configure environment
+npm run db:setup            # Migrate + seed
 ```
 
 4. Run development server:
@@ -94,6 +94,8 @@ Open [http://localhost:3000](http://localhost:3000) to see the app.
 | `npm run build` | Build for production |
 | `npm run start` | Start production server |
 | `npm run lint` | Run ESLint |
+| `npm run postinstall` | Auto-generates Prisma client after `npm install` |
+| `npm run db:setup` | Run migrations + seed (one command) |
 | `npm run db:generate` | Generate Prisma client |
 | `npm run db:migrate` | Run database migrations |
 | `npm run db:seed` | Seed database with sample data |
