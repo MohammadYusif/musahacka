@@ -50,7 +50,7 @@ export function Header() {
             </div>
             <div>
               <span className="font-semibold tracking-wide text-bark-800" style={{ fontFamily: "var(--font-display)" }}>{tc("appName")}</span>
-              <span className="text-xs block tracking-[0.25em] text-gold-500 -mt-0.5" style={{ fontFamily: "var(--font-display)" }}>AL-AHSA</span>
+              <span className="text-xs block tracking-[0.25em] text-gold-400 -mt-0.5" style={{ fontFamily: "var(--font-display)" }}>AL-AHSA</span>
             </div>
           </Link>
 
@@ -59,7 +59,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-bark-700 hover:text-gold-500 transition-colors tracking-wide"
+                className="text-sm font-medium text-bark-700 hover:text-gold-400 transition-colors tracking-wide"
               >
                 {link.label}
               </Link>
@@ -71,7 +71,7 @@ export function Header() {
               variant="ghost"
               size="sm"
               onClick={switchLocale}
-              className="gap-1.5 text-xs text-bark-700 hover:text-gold-500"
+              className="gap-1.5 text-xs text-bark-700 hover:text-gold-400"
             >
               <Globe className="h-3.5 w-3.5" />
               {locale === "en" ? tc("arabic") : tc("english")}
@@ -95,7 +95,7 @@ export function Header() {
             ) : (
               <div className="hidden md:flex items-center gap-2">
                 <Link href="/login">
-                  <Button variant="ghost" size="sm" className="font-medium text-bark-700 hover:text-gold-500">
+                  <Button variant="ghost" size="sm" className="font-medium text-bark-700 hover:text-gold-400">
                     {tc("signIn")}
                   </Button>
                 </Link>
@@ -132,7 +132,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block text-base font-medium text-bark-700 py-2 hover:text-gold-500 transition-colors"
+                  className="block text-base font-medium text-bark-700 py-2 hover:text-gold-400 transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}

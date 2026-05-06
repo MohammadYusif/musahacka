@@ -74,7 +74,7 @@ export default function RegisterPage() {
       <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gold-400/10 rounded-full blur-[100px]"></div>
 
       <div className="w-full max-w-md relative z-10">
-        <Link href="/" className="inline-flex items-center gap-1.5 mb-6 text-sm text-bark-700 hover:text-gold-500 transition-colors">
+        <Link href="/" className="inline-flex items-center gap-1.5 mb-6 text-sm text-bark-700 hover:text-gold-400 transition-colors">
           <ArrowLeft className="h-3.5 w-3.5 rtl:rotate-180" />
           {t("backToHome")}
         </Link>

@@ -99,8 +99,8 @@ export default function HomePage() {
             <defs>
               <linearGradient id="ecgGlow" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="85%" stopColor="#4A6FA5" stopOpacity="0" />
-                <stop offset="90%" stopColor="#6b80a3" stopOpacity="0.4" />
-                <stop offset="95%" stopColor="#6b80a3" stopOpacity="0.2" />
+                <stop offset="90%" stopColor="#C9933A" stopOpacity="0.4" />
+                <stop offset="95%" stopColor="#C9933A" stopOpacity="0.2" />
                 <stop offset="100%" stopColor="transparent" />
               </linearGradient>
               <clipPath id="ecgClip"><rect x="0" y="700" width="1440" height="200" /></clipPath>
@@ -108,12 +108,12 @@ export default function HomePage() {
             <g clipPath="url(#ecgClip)" opacity="0.8">
               <rect x="0" y="700" width="1440" height="200" fill="url(#ecgGlow)" />
               <path d="M0 780 L200 780 L250 780 L270 740 L290 820 L310 780 L500 780 L600 780 L620 750 L640 810 L660 780 L1000 780 L1050 780 L1070 740 L1090 820 L1110 780 L1300 780 L1350 780 L1370 750 L1390 810 L1410 780 L1440 780"
-                stroke="#6b80a3" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"
+                stroke="#C9933A" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"
                 strokeDasharray="2000" strokeDashoffset="2000">
                 <animate attributeName="stroke-dashoffset" from="2000" to="0" dur="4s" repeatCount="indefinite" />
               </path>
               <path d="M0 780 L200 780 L250 780 L270 740 L290 820 L310 780 L500 780 L600 780 L620 750 L640 810 L660 780 L1000 780 L1050 780 L1070 740 L1090 820 L1110 780 L1300 780 L1350 780 L1370 750 L1390 810 L1410 780 L1440 780"
-                stroke="#6b80a3" strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.3"
+                stroke="#C9933A" strokeWidth="6" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.3"
                 strokeDasharray="2000" strokeDashoffset="2000">
                 <animate attributeName="stroke-dashoffset" from="2000" to="0" dur="4s" repeatCount="indefinite" />
               </path>
@@ -135,20 +135,32 @@ export default function HomePage() {
         <div className="absolute inset-0 hidden md:block" style={{ background: isRtl ? "linear-gradient(to left, rgba(30,41,59,0.85) 0%, rgba(30,41,59,0.6) 40%, rgba(30,41,59,0.2) 70%, transparent 100%)" : "linear-gradient(to right, rgba(30,41,59,0.85) 0%, rgba(30,41,59,0.6) 40%, rgba(30,41,59,0.2) 70%, transparent 100%)" }} />
         <div className="absolute inset-0 md:hidden" style={{ background: "linear-gradient(to top, rgba(30,41,59,0.9) 0%, rgba(30,41,59,0.5) 50%, rgba(30,41,59,0.3) 100%)" }} />
 
-        <div className="absolute top-24 right-8 sm:top-32 sm:right-16 opacity-20">
-          <HeartPulse className="text-brand-300 w-12 h-12 sm:w-16 sm:h-16 animate-float" />
-        </div>
-        <div className="absolute top-40 right-32 sm:top-48 sm:right-48 opacity-10 hidden sm:block">
-          <Leaf className="text-brand-200 w-12 h-12 animate-float" style={{ animationDelay: "1s" }} />
-        </div>
-        <div className="absolute bottom-32 left-8 sm:left-16 opacity-10">
-          <Activity className="text-brand-200 w-10 h-10 sm:w-14 sm:h-14 animate-float" style={{ animationDelay: "2s" }} />
-        </div>
-        <div className="absolute top-1/3 left-8 sm:left-24 opacity-10">
-          <Stethoscope className="text-gold-300 w-8 h-8 sm:w-10 sm:h-10 animate-float" style={{ animationDelay: "0.5s" }} />
-        </div>
-        <div className="absolute bottom-1/4 right-8 sm:right-20 opacity-10">
-          <Shield className="text-brand-200 w-8 h-8 sm:w-10 sm:h-10 animate-float" style={{ animationDelay: "1.5s" }} />
+        <div className="absolute right-0 bottom-0 w-96 h-96 opacity-10 pointer-events-none">
+          <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="200" cy="200" r="120" stroke="#FDFBF7" strokeWidth="0.8" />
+            <circle cx="200" cy="200" r="80" stroke="#FDFBF7" strokeWidth="0.8" />
+            <circle cx="200" cy="80" r="8" stroke="#FDFBF7" strokeWidth="1" />
+            <circle cx="200" cy="320" r="8" stroke="#FDFBF7" strokeWidth="1" />
+            <circle cx="80" cy="200" r="8" stroke="#FDFBF7" strokeWidth="1" />
+            <circle cx="320" cy="200" r="8" stroke="#FDFBF7" strokeWidth="1" />
+            <circle cx="115" cy="115" r="6" stroke="#FDFBF7" strokeWidth="1" />
+            <circle cx="285" cy="115" r="6" stroke="#FDFBF7" strokeWidth="1" />
+            <circle cx="115" cy="285" r="6" stroke="#FDFBF7" strokeWidth="1" />
+            <circle cx="285" cy="285" r="6" stroke="#FDFBF7" strokeWidth="1" />
+            <circle cx="200" cy="200" r="4" stroke="#FDFBF7" strokeWidth="1" />
+            <line x1="200" y1="80" x2="115" y2="115" stroke="#FDFBF7" strokeWidth="0.8" />
+            <line x1="200" y1="80" x2="285" y2="115" stroke="#FDFBF7" strokeWidth="0.8" />
+            <line x1="200" y1="320" x2="115" y2="285" stroke="#FDFBF7" strokeWidth="0.8" />
+            <line x1="200" y1="320" x2="285" y2="285" stroke="#FDFBF7" strokeWidth="0.8" />
+            <line x1="80" y1="200" x2="115" y2="115" stroke="#FDFBF7" strokeWidth="0.8" />
+            <line x1="80" y1="200" x2="115" y2="285" stroke="#FDFBF7" strokeWidth="0.8" />
+            <line x1="320" y1="200" x2="285" y2="115" stroke="#FDFBF7" strokeWidth="0.8" />
+            <line x1="320" y1="200" x2="285" y2="285" stroke="#FDFBF7" strokeWidth="0.8" />
+            <line x1="115" y1="115" x2="285" y2="285" stroke="#FDFBF7" strokeWidth="0.5" opacity="0.5" />
+            <line x1="285" y1="115" x2="115" y2="285" stroke="#FDFBF7" strokeWidth="0.5" opacity="0.5" />
+            <line x1="200" y1="80" x2="200" y2="320" stroke="#FDFBF7" strokeWidth="0.5" opacity="0.4" />
+            <line x1="80" y1="200" x2="320" y2="200" stroke="#FDFBF7" strokeWidth="0.5" opacity="0.4" />
+          </svg>
         </div>
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 py-12 md:py-16">
@@ -159,16 +171,16 @@ export default function HomePage() {
                 {t("hero.badge")}
               </span>
             </motion.div>
-            <motion.h1 custom={0.4} variants={fadeInUp} initial="hidden" animate={heroInView ? "visible" : "hidden"} className="text-4xl md:text-6xl lg:text-7xl font-semibold text-ivory-50 leading-[1.1] tracking-tight mb-6" style={{ fontFamily: "var(--font-display)" }}>
-              {t("hero.title")}<br />
-              <span className="text-gold-400 italic">{t("hero.titleHighlight")}</span>
+            <motion.h1 custom={0.4} variants={fadeInUp} initial="hidden" animate={heroInView ? "visible" : "hidden"} className="text-5xl md:text-6xl lg:text-7xl font-semibold text-ivory-50 leading-none tracking-tight mb-6" style={{ fontFamily: "var(--font-display)" }}>
+              {t("hero.title")}{" "}
+              <span className="bg-gradient-to-r from-ivory-100 to-gold-400 bg-clip-text text-transparent">{t("hero.titleHighlight")}</span>
             </motion.h1>
             <motion.p custom={0.6} variants={fadeInUp} initial="hidden" animate={heroInView ? "visible" : "hidden"} className="text-ivory-300 text-base md:text-lg leading-relaxed mb-10 max-w-lg">
               {t("hero.subtitle")}
             </motion.p>
             <motion.div custom={0.8} variants={fadeInUp} initial="hidden" animate={heroInView ? "visible" : "hidden"} className="flex flex-wrap gap-4">
               <Link href="/triage">
-                <Button className="inline-flex items-center gap-2 bg-gold-500 text-ivory-100 px-8 py-3.5 rounded-full text-sm font-semibold tracking-wide hover:bg-gold-600 transition-all active:scale-[0.97] border-0">
+                <Button className="inline-flex items-center gap-2 bg-brand-600 text-ivory-100 px-8 py-3.5 rounded-full text-sm font-semibold tracking-wide hover:bg-brand-700 transition-all active:scale-[0.97] border-0">
                   {t("hero.cta")} <ArrowRight className="w-4 h-4 rtl:rotate-180" />
                 </Button>
               </Link>
@@ -179,6 +191,12 @@ export default function HomePage() {
               </Link>
             </motion.div>
           </div>
+        </div>
+
+        <div className="relative -mt-1">
+          <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="w-full h-16 md:h-20 block">
+            <path d="M0,80 C360,0 1080,80 1440,0 L1440,80 L0,80 Z" fill="#FDFBF7" />
+          </svg>
         </div>
       </section>
 
@@ -231,15 +249,15 @@ export default function HomePage() {
               </div>
               <div className="absolute -bottom-6 right-4 md:-right-8 bg-ivory-50 rounded-2xl px-5 py-4 shadow-lg border border-ivory-300">
                 <div className="flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-gold-500" />
+                  <Shield className="w-4 h-4 text-gold-400" />
                   <p className="text-xs text-bark-700 font-medium">{t("about.badge")}</p>
                 </div>
               </div>
             </motion.div>
 
             <motion.div variants={itemVariants}>
-              <span className="inline-flex items-center gap-2 text-gold-500 text-xs tracking-[0.3em] uppercase font-medium mb-4">
-                <span className="w-6 h-px bg-gold-500"></span>
+              <span className="inline-flex items-center gap-2 text-gold-400 text-xs tracking-[0.3em] uppercase font-medium mb-4">
+                <span className="w-6 h-px bg-gold-400"></span>
                 {t("about.subtitle")}
               </span>
               <h2 className="text-3xl md:text-4xl font-semibold text-bark-800 leading-tight mb-6" style={{ fontFamily: "var(--font-display)" }}>
@@ -279,10 +297,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-16">
-              <span className="inline-flex items-center gap-2 text-gold-500 text-xs tracking-[0.3em] uppercase font-medium mb-4">
-                <span className="w-6 h-px bg-gold-500"></span>
+              <span className="inline-flex items-center gap-2 text-gold-400 text-xs tracking-[0.3em] uppercase font-medium mb-4">
+                <span className="w-6 h-px bg-gold-400"></span>
                 {t("services.subtitle")}
-                <span className="w-6 h-px bg-gold-500"></span>
+                <span className="w-6 h-px bg-gold-400"></span>
               </span>
               <h2 className="text-3xl md:text-5xl font-semibold text-bark-800 mb-4" style={{ fontFamily: "var(--font-display)" }}>
                 {t("services.heading")} <span className="text-brand-600 italic">{t("services.highlight")}</span>
@@ -315,15 +333,15 @@ export default function HomePage() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="paper-texture py-24 md:py-32 relative overflow-hidden">
+      <section id="how-it-works" className="bg-ivory-50 py-24 md:py-32 relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-px gold-line opacity-40"></div>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-16">
-              <span className="inline-flex items-center gap-2 text-gold-500 text-xs tracking-[0.3em] uppercase font-medium mb-4">
-                <span className="w-6 h-px bg-gold-500"></span>
+              <span className="inline-flex items-center gap-2 text-gold-400 text-xs tracking-[0.3em] uppercase font-medium mb-4">
+                <span className="w-6 h-px bg-gold-400"></span>
                 {t("howItWorks.sectionSubtitle")}
-                <span className="w-6 h-px bg-gold-500"></span>
+                <span className="w-6 h-px bg-gold-400"></span>
               </span>
               <h2 className="text-3xl md:text-5xl font-semibold text-bark-800 mb-4" style={{ fontFamily: "var(--font-display)" }}>
                 {t("howItWorks.title")}
@@ -370,15 +388,15 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="paper-texture py-24 md:py-32 relative">
+      <section id="testimonials" className="bg-ivory-50 py-24 md:py-32 relative">
         <div className="absolute top-0 left-0 right-0 h-px gold-line opacity-30"></div>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <FadeIn>
             <div className="text-center mb-16">
-              <span className="inline-flex items-center gap-2 text-gold-500 text-xs tracking-[0.3em] uppercase font-medium mb-4">
-                <span className="w-6 h-px bg-gold-500"></span>
+              <span className="inline-flex items-center gap-2 text-gold-400 text-xs tracking-[0.3em] uppercase font-medium mb-4">
+                <span className="w-6 h-px bg-gold-400"></span>
                 {t("testimonials.sectionLabel")}
-                <span className="w-6 h-px bg-gold-500"></span>
+                <span className="w-6 h-px bg-gold-400"></span>
               </span>
               <h2 className="text-3xl md:text-4xl font-semibold text-bark-800" style={{ fontFamily: "var(--font-display)" }}>
                 {t("testimonials.title")}
@@ -389,7 +407,7 @@ export default function HomePage() {
           <StaggerContainer className="grid md:grid-cols-3 gap-8" staggerDelay={0.1}>
             {testimonialsItems.map((testimonial, index) => (
               <StaggerItem key={index}>
-                <div className="bg-white rounded-2xl p-8 border border-ivory-300 hover:border-gold-300 transition-all h-full">
+                <div className="bg-white rounded-2xl p-8 border border-ivory-300 hover:border-gold-400 transition-all h-full">
                   <div className="flex items-center gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-gold-400 text-gold-400" />

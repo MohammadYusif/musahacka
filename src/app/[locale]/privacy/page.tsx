@@ -17,8 +17,8 @@ export default function PrivacyPage() {
           </svg>
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <div className="w-14 h-14 rounded-2xl bg-gold-500/20 flex items-center justify-center mx-auto mb-6">
-            <Shield className="w-7 h-7 text-gold-300" />
+            <div className="w-14 h-14 rounded-2xl bg-gold-400/20 flex items-center justify-center mx-auto mb-6">
+              <Shield className="w-7 h-7 text-gold-400" />
           </div>
           <h1 className="text-4xl md:text-5xl font-semibold text-ivory-100" style={{ fontFamily: "var(--font-display)" }}>{t("title")}</h1>
         </div>

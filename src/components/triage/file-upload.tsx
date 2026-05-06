@@ -2,9 +2,8 @@
 
 import { useCallback, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Upload, FileText, X, Loader2 } from "lucide-react";
+import { Upload, FileText, CheckCircle, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
 interface FileUploadProps {
@@ -48,63 +47,74 @@ export function FileUpload({ onFileSelect, isAnalyzing }: FileUploadProps) {
     if (selectedFile) onFileSelect(selectedFile);
   };
 
+  const formatSize = (bytes: number) => {
+    if (bytes < 1024) return bytes + " B";
+    if (bytes < 1048576) return (bytes / 1024).toFixed(1) + " KB";
+    return (bytes / 1048576).toFixed(1) + " MB";
+  };
+
   return (
     <div className="space-y-4">
       <motion.div whileHover={selectedFile ? {} : { scale: 1.01 }} transition={{ duration: 0.2 }}>
-        <Card
-          className={`relative border-2 border-dashed transition-all duration-200 ${
-            dragActive ? "border-primary bg-primary/5 scale-[1.02] shadow-md" : "border-muted-foreground/25"
+        <div
+          className={`relative border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-300 cursor-pointer ${
+            dragActive
+              ? "border-brand-500 bg-brand-50/50 ring-4 ring-brand-400/20 animate-pulse"
+              : selectedFile
+                ? "border-green-400 bg-green-50/30"
+                : "border-brand-300 hover:border-brand-400 hover:bg-ivory-50/50"
           }`}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
           onDragOver={handleDrag}
           onDrop={handleDrop}
+          onClick={() => !selectedFile && document.getElementById("file-input")?.click()}
         >
-          <div className="p-8 text-center">
-            {selectedFile ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.2 }}
-                className="flex items-center justify-center gap-3"
-              >
-                <FileText className="h-8 w-8 text-primary" />
-                <div className="text-left">
-                  <p className="font-medium text-sm">{selectedFile.name}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {(selectedFile.size / 1024).toFixed(1)} KB
-                  </p>
-                </div>
-                {!isAnalyzing && (
-                  <Button variant="ghost" size="icon" onClick={clearFile} className="h-8 w-8">
-                    <X className="h-4 w-4" />
-                  </Button>
-                )}
-              </motion.div>
-            ) : (
-              <div>
-                <motion.div
-                  animate={dragActive ? { scale: 1.1, y: -4 } : { scale: 1, y: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Upload className="mx-auto h-10 w-10 text-muted-foreground mb-3" />
-                </motion.div>
-                <p className="text-sm text-muted-foreground">{t("uploadHint")}</p>
-                <label className="mt-3 inline-block cursor-pointer">
-                  <span className="text-primary text-sm font-medium hover:underline">
-                    {t("browseFiles")}
-                  </span>
-                  <input
-                    type="file"
-                    className="hidden"
-                    accept=".pdf,.png,.jpg,.jpeg,.doc,.docx"
-                    onChange={handleChange}
-                  />
-                </label>
+          {selectedFile ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.2 }}
+              className="flex items-center justify-center gap-4"
+            >
+              <CheckCircle className="h-8 w-8 text-green-500 shrink-0" />
+              <div className="text-left">
+                <p className="font-semibold text-bark-800 text-sm">{selectedFile.name}</p>
+                <p className="text-xs text-bark-500">{formatSize(selectedFile.size)}</p>
               </div>
-            )}
-          </div>
-        </Card>
+              {!isAnalyzing && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); clearFile(); }}
+                  className="p-1 rounded-full hover:bg-ivory-200 transition-colors"
+                >
+                  <X className="h-4 w-4 text-bark-400" />
+                </button>
+              )}
+            </motion.div>
+          ) : (
+            <div>
+              <motion.div
+                animate={dragActive ? { scale: 1.1, y: -4 } : { scale: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Upload className="mx-auto h-10 w-10 text-brand-400 mb-4" />
+              </motion.div>
+              <p className="text-bark-600 text-sm mb-2">{t("uploadHint")}</p>
+              <label className="inline-block cursor-pointer">
+                <span className="text-brand-600 text-sm font-semibold hover:underline">
+                  {t("browseFiles")}
+                </span>
+                <input
+                  id="file-input"
+                  type="file"
+                  className="hidden"
+                  accept=".pdf,.png,.jpg,.jpeg,.doc,.docx"
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+          )}
+        </div>
       </motion.div>
 
       {selectedFile && (
@@ -113,15 +123,8 @@ export function FileUpload({ onFileSelect, isAnalyzing }: FileUploadProps) {
           animate={{ opacity: 1, y: 0 }}
           className="flex justify-end"
         >
-          <Button onClick={handleSubmit} disabled={isAnalyzing} className="gap-2">
-            {isAnalyzing ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" />
-                {t("analyzing")}
-              </>
-            ) : (
-              t("analyze")
-            )}
+          <Button onClick={handleSubmit} disabled={isAnalyzing} className="gap-2 bg-brand-600 hover:bg-brand-700 text-ivory-100 rounded-xl px-6 border-0">
+            {t("analyze")}
           </Button>
         </motion.div>
       )}

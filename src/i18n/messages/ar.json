@@ -189,7 +189,21 @@
       "moderate": "متوسط",
       "high": "مرتفع",
       "emergency": "طارئ"
-    }
+    },
+    "journeyLabel": "رحلتك العلاجية",
+    "estimatedCost": "التكلفة التقديرية",
+    "stayDuration": "مدة الإقامة",
+    "specialty": "التخصص",
+    "companionPlan": "خطة المرافقين",
+    "companions": "مرافقين",
+    "bookConsultation": "احجز استشارة",
+    "saveAsPdf": "حفظ كملف PDF",
+    "stepReading": "جارٍ قراءة المستند الطبي...",
+    "stepExtracting": "جارٍ استخراج التشخيص والنتائج...",
+    "stepIdentifying": "جارٍ تحديد التخصص الموصى به...",
+    "stepMatching": "جارٍ مطابقة منشآت الأحساء...",
+    "stepEstimating": "جارٍ تقدير تكاليف العلاج...",
+    "stepBuilding": "جارٍ بناء خطة رحلتك..."
   },
   "facilities": {
     "title": "المنشآت الطبية",

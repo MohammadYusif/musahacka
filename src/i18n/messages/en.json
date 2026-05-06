@@ -189,7 +189,21 @@
       "moderate": "Moderate",
       "high": "High",
       "emergency": "Emergency"
-    }
+    },
+    "journeyLabel": "Your Medical Journey",
+    "estimatedCost": "Estimated Cost",
+    "stayDuration": "Stay Duration",
+    "specialty": "Specialty",
+    "companionPlan": "Companion Plan",
+    "companions": "Companions",
+    "bookConsultation": "Book Consultation",
+    "saveAsPdf": "Save as PDF",
+    "stepReading": "Reading medical document...",
+    "stepExtracting": "Extracting diagnosis & findings...",
+    "stepIdentifying": "Identifying recommended specialty...",
+    "stepMatching": "Matching Al-Ahsa facilities...",
+    "stepEstimating": "Estimating treatment costs...",
+    "stepBuilding": "Building your journey plan..."
   },
   "facilities": {
     "title": "Medical Facilities",

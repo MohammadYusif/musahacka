@@ -27,8 +27,8 @@ export default function DashboardPage() {
     date: "May 4, 2026", status: "confirmed", notes: "Initial consultation for cholesterol management",
   }];
 
-  const urgencyColors: Record<string, string> = { low: "bg-ivory-200 text-brand-600", moderate: "bg-gold-300/30 text-gold-600", high: "bg-brand-200 text-brand-600" };
-  const statusColors: Record<string, string> = { analyzed: "bg-brand-100 text-brand-700", pending: "bg-gold-300/20 text-gold-600", confirmed: "bg-brand-100 text-brand-700" };
+  const urgencyColors: Record<string, string> = { low: "bg-ivory-200 text-brand-600", moderate: "bg-gold-400/20 text-gold-600", high: "bg-brand-200 text-brand-600" };
+  const statusColors: Record<string, string> = { analyzed: "bg-brand-100 text-brand-700", pending: "bg-gold-400/15 text-gold-600", confirmed: "bg-brand-100 text-brand-700" };
 
   const stats = [
     { label: t("reports"), count: demoReports.length, icon: FileText },
