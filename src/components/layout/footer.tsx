@@ -2,7 +2,7 @@
 
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { HeartPulse } from "lucide-react";
+import Image from "next/image";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -16,14 +16,8 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 mb-16">
           <div>
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center">
-                <HeartPulse className="w-5 h-5 text-ivory-100" />
-              </div>
-              <div>
-                <span className="text-xl font-semibold text-ivory-100" style={{ fontFamily: "var(--font-display)" }}>{tc("appName")}</span>
-                <span className="text-xs block tracking-[0.25em] text-ivory-300/60 -mt-0.5" style={{ fontFamily: "var(--font-display)" }}>AL-AHSA</span>
-              </div>
+            <div className="mb-5">
+              <Image src="/brand/WisalLogo.svg" alt={tc("appName")} width={140} height={46} className="h-10 w-auto" priority />
             </div>
             <p className="text-sm text-ivory-200/70 leading-relaxed mb-6">{t("tagline")}</p>
             <div className="flex items-center gap-3 text-ivory-200/60 text-sm">

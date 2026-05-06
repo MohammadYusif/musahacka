@@ -4,6 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link, useRouter, usePathname } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Globe, Menu, X, User, LogOut } from "lucide-react";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSession, signOut } from "next-auth/react";
@@ -45,13 +46,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center group-hover:bg-brand-600 transition-colors">
-              <span className="text-ivory-100 font-bold text-base" style={{ fontFamily: "var(--font-display)" }}>W</span>
-            </div>
-            <div>
-              <span className="font-semibold tracking-wide text-bark-800" style={{ fontFamily: "var(--font-display)" }}>{tc("appName")}</span>
-              <span className="text-xs block tracking-[0.25em] text-gold-400 -mt-0.5" style={{ fontFamily: "var(--font-display)" }}>AL-AHSA</span>
-            </div>
+            <Image src="/brand/WisalLogo.svg" alt={tc("appName")} width={120} height={40} className="h-8 w-auto" priority />
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
