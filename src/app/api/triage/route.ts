@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { openai, TRIAGE_SYSTEM_PROMPT, TRIAGE_PROMPT_AR } from "@/lib/openai";
+import { deepseek, TRIAGE_SYSTEM_PROMPT, TRIAGE_PROMPT_AR } from "@/lib/deepseek";
 
 export async function POST(req: NextRequest) {
   try {
@@ -13,14 +13,13 @@ export async function POST(req: NextRequest) {
 
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-
     const base64 = buffer.toString("base64");
     const dataUrl = `data:${file.type};base64,${base64}`;
 
     const systemPrompt = locale === "ar" ? TRIAGE_PROMPT_AR : TRIAGE_SYSTEM_PROMPT;
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o",
+    const response = await deepseek.chat.completions.create({
+      model: "deepseek-chat",
       messages: [
         { role: "system", content: systemPrompt },
         {
@@ -52,17 +51,21 @@ export async function POST(req: NextRequest) {
     let analysis;
     try {
       const jsonMatch = content.match(/\{[\s\S]*\}/);
-      analysis = jsonMatch ? JSON.parse(jsonMatch[0]) : { summary: content, findings: [], recommendedSpecialty: "General", urgency: "low", suggestedActions: [], recommendedTests: [] };
+      analysis = jsonMatch
+        ? JSON.parse(jsonMatch[0])
+        : { summary: content, findings: [], recommendedSpecialty: "General", urgency: "low", suggestedActions: [], recommendedTests: [], estimatedStayDays: 3 };
     } catch {
-      analysis = { summary: content, findings: [], recommendedSpecialty: "General", urgency: "low", suggestedActions: [], recommendedTests: [] };
+      analysis = { summary: content, findings: [], recommendedSpecialty: "General", urgency: "low", suggestedActions: [], recommendedTests: [], estimatedStayDays: 3 };
+    }
+
+    if (!analysis.estimatedStayDays) {
+      const stayMap: Record<string, number> = { emergency: 14, high: 10, moderate: 5, low: 3 };
+      analysis.estimatedStayDays = stayMap[analysis.urgency] ?? 3;
     }
 
     return NextResponse.json({ analysis });
   } catch (error) {
     console.error("Triage error:", error);
-    return NextResponse.json(
-      { error: "Failed to analyze report" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Failed to analyze report" }, { status: 500 });
   }
 }
