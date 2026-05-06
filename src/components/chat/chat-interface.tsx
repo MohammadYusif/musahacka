@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -17,6 +17,7 @@ interface Message {
 
 export function ChatInterface() {
   const t = useTranslations("chat");
+  const locale = useLocale();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 0,
@@ -56,7 +57,7 @@ export function ChatInterface() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: chatMessages }),
+        body: JSON.stringify({ messages: chatMessages, locale }),
       });
 
       if (!res.ok) throw new Error("Chat request failed");
