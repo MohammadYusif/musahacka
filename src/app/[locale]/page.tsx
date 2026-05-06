@@ -165,12 +165,7 @@ export default function HomePage() {
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 py-12 md:py-16">
           <div className={isRtl ? "max-w-2xl ml-auto" : "max-w-2xl"}>
-            <motion.div custom={0.2} variants={fadeInUp} initial="hidden" animate={heroInView ? "visible" : "hidden"}>
-              <span className="inline-flex items-center gap-2 text-gold-400 text-xs tracking-[0.3em] uppercase font-medium mb-6">
-                <span className="w-8 h-px bg-gold-400"></span>
-                {t("hero.badge")}
-              </span>
-            </motion.div>
+
             <motion.h1 custom={0.4} variants={fadeInUp} initial="hidden" animate={heroInView ? "visible" : "hidden"} className="text-5xl md:text-6xl lg:text-7xl font-semibold text-ivory-50 leading-none tracking-tight mb-6" style={{ fontFamily: "var(--font-display)" }}>
               {t("hero.title")}{" "}
               <span className="bg-gradient-to-r from-ivory-100 to-gold-400 bg-clip-text text-transparent">{t("hero.titleHighlight")}</span>
