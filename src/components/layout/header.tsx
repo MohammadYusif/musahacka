@@ -32,6 +32,7 @@ export function Header() {
 
   const navLinks = [
     { href: "/triage", label: t("triage") },
+    { href: "/journey", label: t("journey") },
     { href: "/facilities", label: t("facilities") },
     { href: "/chat", label: t("chat") },
     { href: "/dashboard", label: t("dashboard") },

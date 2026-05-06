@@ -7,6 +7,12 @@ const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
+  const existing = await prisma.facility.count();
+  if (existing > 0) {
+    console.log("Database already seeded, skipping.");
+    return;
+  }
+
   console.log("Seeding database...");
 
   const facilities = [

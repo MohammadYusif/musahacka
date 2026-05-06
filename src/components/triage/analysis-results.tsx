@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { FadeIn } from "@/components/ui/fade-in";
-import { AlertTriangle, ArrowRight, CheckCircle2, ClipboardList, FlaskConical, Stethoscope } from "lucide-react";
+import { AlertTriangle, ArrowRight, CheckCircle2, ClipboardList, FlaskConical, Route, Stethoscope } from "lucide-react";
 
 interface AnalysisResultsProps {
   analysis: {
@@ -16,6 +16,7 @@ interface AnalysisResultsProps {
     summary?: string;
     suggestedActions?: string[];
     recommendedTests?: string[];
+    estimatedStayDays?: number;
   };
 }
 
@@ -138,11 +139,25 @@ export function AnalysisResults({ analysis }: AnalysisResultsProps) {
 
       {analysis.recommendedSpecialty && (
         <FadeIn delay={0.48}>
-          <Link href={`/facilities?specialty=${encodeURIComponent(analysis.recommendedSpecialty)}`}>
-            <Button className="w-full gap-2" size="lg">
-              {t("findFacilities")} <ArrowRight className="h-4 w-4 rtl:rotate-180" />
-            </Button>
-          </Link>
+          <div className="flex flex-col gap-2">
+            <Link
+              href="/journey"
+              onClick={() => {
+                try {
+                  sessionStorage.setItem("wisal:triage", JSON.stringify(analysis));
+                } catch {}
+              }}
+            >
+              <Button className="w-full gap-2 bg-brand-600 hover:bg-brand-700 text-white" size="lg">
+                <Route className="h-4 w-4" /> Plan My Journey
+              </Button>
+            </Link>
+            <Link href={`/facilities?specialty=${encodeURIComponent(analysis.recommendedSpecialty)}`}>
+              <Button variant="outline" className="w-full gap-2 text-bark-600" size="sm">
+                {t("findFacilities")} <ArrowRight className="h-4 w-4 rtl:rotate-180" />
+              </Button>
+            </Link>
+          </div>
         </FadeIn>
       )}
     </div>
