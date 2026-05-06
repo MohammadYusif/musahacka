@@ -1,10 +1,13 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { JourneyWizard } from "@/components/journey/journey-wizard";
 import { FadeIn } from "@/components/ui/fade-in";
 import { Route } from "lucide-react";
 
 export default function JourneyPage() {
+  const t = useTranslations("journeyPage");
+
   return (
     <div className="min-h-screen bg-ivory-100/50">
       <div className="container mx-auto px-4 py-8 max-w-2xl">
@@ -15,12 +18,10 @@ export default function JourneyPage() {
                 <Route className="w-5 h-5 text-ivory-100" />
               </div>
               <h1 className="text-2xl font-bold text-bark-800" style={{ fontFamily: "var(--font-display)" }}>
-                Plan Your Journey
+                {t("title")}
               </h1>
             </div>
-            <p className="text-bark-600">
-              From triage to check-out — your complete Al-Ahsa medical trip, planned in minutes.
-            </p>
+            <p className="text-bark-600">{t("subtitle")}</p>
           </div>
         </FadeIn>
 

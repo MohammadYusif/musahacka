@@ -606,5 +606,9 @@
     "newJourney": "New Journey",
     "noJourneyPlans": "No journey plans yet.",
     "planFirstJourney": "Plan Your First Journey"
+  },
+  "journeyPage": {
+    "title": "Plan Your Journey",
+    "subtitle": "From triage to check-out — your complete Al-Ahsa medical trip, planned in minutes."
   }
 }
