@@ -51,10 +51,10 @@
   --color-bark-800: #334155;
   --color-bark-900: #1e293b;
 
-  --color-gold-300: #8196b3;
-  --color-gold-400: #6b80a3;
-  --color-gold-500: #4A6FA5;
-  --color-gold-600: #3d5c8c;
+  --color-gold-300: #6b80a3;
+  --color-gold-400: #4A6FA5;
+  --color-gold-500: #3d5c8c;
+  --color-gold-600: #334b73;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -86,7 +86,7 @@
   --destructive-foreground: #FAF6EE;
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #C5A55A;
+  --ring: #4A6FA5;
 }
 
 .dark {
@@ -108,7 +108,7 @@
   --destructive-foreground: #FAF6EE;
   --border: #475569;
   --input: #475569;
-  --ring: #C5A55A;
+  --ring: #4A6FA5;
 }
 
 @layer base {
@@ -122,7 +122,7 @@
 }
 
 .gold-line {
-  background: linear-gradient(to right, transparent, #6b80a3, transparent);
+  background: linear-gradient(to right, transparent, #4A6FA5, transparent);
 }
 
 .hero-overlay {
