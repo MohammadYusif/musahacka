@@ -46,7 +46,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-3 group">
-            <Image src="/brand/WisalLogo.svg" alt={tc("appName")} width={120} height={40} className="h-8 w-auto" priority />
+            <Image src="/brand/WisalLogo.svg" alt={tc("appName")} width={320} height={106} className="h-14 sm:h-16 md:h-[68px] w-auto" priority />
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">

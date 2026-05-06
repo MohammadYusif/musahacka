@@ -17,7 +17,7 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 mb-16">
           <div>
             <div className="mb-5">
-              <Image src="/brand/WisalLogo.svg" alt={tc("appName")} width={140} height={46} className="h-10 w-auto" priority />
+              <Image src="/brand/WisalLogo.svg" alt={tc("appName")} width={360} height={120} className="h-20 sm:h-24 md:h-28 w-auto" priority />
             </div>
             <p className="text-sm text-ivory-200/70 leading-relaxed mb-6">{t("tagline")}</p>
             <div className="flex items-center gap-3 text-ivory-200/60 text-sm">
