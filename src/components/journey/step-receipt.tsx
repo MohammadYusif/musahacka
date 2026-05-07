@@ -11,8 +11,9 @@ import { Label } from "@/components/ui/label";
 import { Link } from "@/i18n/navigation";
 import {
   BedDouble, Building2, Car, CheckCircle2, CreditCard,
-  Landmark, MapPin, RotateCcw, Send, Ticket, Wallet,
+  Download, Landmark, MapPin, RotateCcw, Send, Ticket, Wallet,
 } from "lucide-react";
+import { openPrintReceipt } from "@/lib/print-receipt";
 import type { Hotel } from "@/data/hotels";
 import type { TransportOption } from "@/data/car-rentals";
 import type { LocalEvent } from "@/data/events";
@@ -62,7 +63,7 @@ function LineItem({ icon: Icon, label, sub, amount, freeLabel }: {
 export function StepReceipt({ triage, hospital, pkg, hotel, nights, transport, events, onReset }: StepReceiptProps) {
   const t = useTranslations("journey.receipt");
   const locale = useLocale();
-  const { data: session, status: authStatus } = useSession();
+  const { status: authStatus } = useSession();
   const isAuthenticated = authStatus === "authenticated";
   const isLoadingAuth = authStatus === "loading";
 
@@ -155,6 +156,22 @@ export function StepReceipt({ triage, hospital, pkg, hotel, nights, transport, e
       .finally(() => setIsSaving(false));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
+
+  const handleDownloadPdf = () => {
+    openPrintReceipt({
+      triage, hospital, pkg, hotel, nights, transport, events,
+      hospitalCost, hotelCost, transportCost, eventsCost,
+      serviceFee: SERVICE_FEE, total,
+      locale: locale === "ar" ? "ar" : "en",
+      contact: {
+        name: anonForm.name || undefined,
+        nationality: anonForm.nationality || contactNationality || undefined,
+        travelDate: anonForm.travelDate || contactTravelDate || undefined,
+        phone: anonForm.phone || contactPhone || undefined,
+        paymentMethod,
+      },
+    });
+  };
 
   const handleConfirmAuth = async () => {
     if (!paymentMethod) return;
@@ -470,6 +487,14 @@ export function StepReceipt({ triage, hospital, pkg, hotel, nights, transport, e
           )}
         </div>
       )}
+
+      <Button
+        variant="outline"
+        className="w-full gap-2 border-brand-200 text-brand-700 hover:bg-brand-50"
+        onClick={handleDownloadPdf}
+      >
+        <Download className="h-4 w-4" /> {t("downloadPdf")}
+      </Button>
 
       <Button variant="outline" className="w-full gap-2 border-ivory-300 text-bark-500 hover:bg-ivory-100" onClick={onReset}>
         <RotateCcw className="h-4 w-4" /> {t("planAnother")}
